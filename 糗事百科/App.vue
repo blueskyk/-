@@ -16,4 +16,6 @@
 	/*每个页面公共css */
 	/* 引入动画库 */
 	@import "./common/animate.css";
+	/* 引入字体图标库 */
+	@import "./common/iconfont.css";
 </style>
