@@ -1,13 +1,15 @@
 <template>
 	<view class="content">
-		
+
 		<swiper-head @itemClick="itemClick" :tabBars="tabBars" :activeIndex="activeIndex"></swiper-head>
 		<swiper class="swiper-box" :style="{height: swiperHeight+'px'}" :current="activeIndex" @change="changeIndex">
-			<swiper-item  v-for="(items,index) in tabList" :key="index">
-				<scroll-view scroll-y class="" :style="{height: swiperHeight+'px'}"  >
-					<view v-for="(item,index1) in items.list" :key="index1">
+			<swiper-item v-for="(items,index) in tabList" :key="index">
+				<scroll-view scroll-y class="" :style="{height: swiperHeight+'px'}" @scrolltolower="loadMore(index)">
+					<block v-for="(item,index1) in items.list" :key="index1">
 						<index-list :item="item" :index="index1"></index-list>
-					</view>
+					</block>
+					<!-- 上拉加载更多 -->
+					<load-more :loadText="items.loadText"></load-more>
 				</scroll-view>
 			</swiper-item>
 		</swiper>
@@ -17,22 +19,39 @@
 <script>
 	import indexList from "../../components/index/index-list.vue"
 	import swiperHead from "../../components/index/swiper-head.vue"
+	import loadMore from "../../components/index/load-more.vue"
 	export default {
 		data() {
 			return {
 				swiperHeight: 500,
-				tabBars: [
-					{ name: "关注", id: "guanzhu" },
-					{ name: "推荐", id: "tuijian" },
-					{ name: "热点", id: "redian" },
-					{ name: "科技", id: "keji" },
-					{ name: "体育", id: "tiyu" },
-					{ name: "财经", id: "caijing" }
-				],
-				tabList: [
+				tabBars: [{
+						name: "关注",
+						id: "guanzhu"
+					},
 					{
-						list: [
-								{
+						name: "推荐",
+						id: "tuijian"
+					},
+					{
+						name: "热点",
+						id: "redian"
+					},
+					{
+						name: "科技",
+						id: "keji"
+					},
+					{
+						name: "体育",
+						id: "tiyu"
+					},
+					{
+						name: "财经",
+						id: "caijing"
+					}
+				],
+				tabList: [{
+						loadText: "上拉加载更多",
+						list: [{
 								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
 								userName: "昵称", //用户昵称
 								isguanzhu: true, //是否关注
@@ -101,350 +120,353 @@
 						]
 					},
 					{
-						list: [
+						loadText: "上拉加载更多",
+						list: [{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: true, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								infoNum: {
+									infoIndex: 0, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
+								},
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
 							{
-									userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-									userName: "昵称", //用户昵称
-									isguanzhu: true, //是否关注
-									title: "我是标题", //标题
-									type: "img", //img: 图片,video:视频
-									titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-									infoNum: {
-										infoIndex: 0, //0: 代表没有操作,1: 顶,2: 踩
-										smileNum: 10, //顶数量
-										sadNum: 10 //踩数量
-									},
-									commentNum: 10, //评论数量
-									shareNum: 10 //分享数量
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "video", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
 								},
-								{
-									userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-									userName: "昵称", //用户昵称
-									isguanzhu: false, //是否关注
-									title: "我是标题", //标题
-									type: "video", //img: 图片,video:视频
-									titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-									playNum: 200000, //播放次数
-									time: "2:47", //时长
-									infoNum: {
-										infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
-										smileNum: 10, //顶数量
-										sadNum: 10 //踩数量
-									},
-									commentNum: 10, //评论数量
-									shareNum: 10 //分享数量
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 2, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
 								},
-								{
-									userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-									userName: "昵称", //用户昵称
-									isguanzhu: false, //是否关注
-									title: "我是标题", //标题
-									type: "img", //img: 图片,video:视频
-									titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-									playNum: 200000, //播放次数
-									time: "2:47", //时长
-									infoNum: {
-										infoIndex: 2, //0: 代表没有操作,1: 顶,2: 踩
-										smileNum: 10, //顶数量
-										sadNum: 10 //踩数量
-									},
-									commentNum: 10, //评论数量
-									shareNum: 10 //分享数量
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
 								},
-								{
-									userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-									userName: "昵称", //用户昵称
-									isguanzhu: false, //是否关注
-									title: "我是标题", //标题
-									type: "img", //img: 图片,video:视频
-									titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-									playNum: 200000, //播放次数
-									time: "2:47", //时长
-									infoNum: {
-										infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
-										smileNum: 10, //顶数量
-										sadNum: 10 //踩数量
-									},
-									commentNum: 10, //评论数量
-									shareNum: 10 //分享数量
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: true, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								infoNum: {
+									infoIndex: 0, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
 								},
-								{
-										userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-										userName: "昵称", //用户昵称
-										isguanzhu: true, //是否关注
-										title: "我是标题", //标题
-										type: "img", //img: 图片,video:视频
-										titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-										infoNum: {
-											infoIndex: 0, //0: 代表没有操作,1: 顶,2: 踩
-											smileNum: 10, //顶数量
-											sadNum: 10 //踩数量
-										},
-										commentNum: 10, //评论数量
-										shareNum: 10 //分享数量
-									},
-									{
-										userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-										userName: "昵称", //用户昵称
-										isguanzhu: false, //是否关注
-										title: "我是标题", //标题
-										type: "video", //img: 图片,video:视频
-										titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-										playNum: 200000, //播放次数
-										time: "2:47", //时长
-										infoNum: {
-											infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
-											smileNum: 10, //顶数量
-											sadNum: 10 //踩数量
-										},
-										commentNum: 10, //评论数量
-										shareNum: 10 //分享数量
-									},
-									{
-										userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-										userName: "昵称", //用户昵称
-										isguanzhu: false, //是否关注
-										title: "我是标题", //标题
-										type: "img", //img: 图片,video:视频
-										titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-										playNum: 200000, //播放次数
-										time: "2:47", //时长
-										infoNum: {
-											infoIndex: 2, //0: 代表没有操作,1: 顶,2: 踩
-											smileNum: 10, //顶数量
-											sadNum: 10 //踩数量
-										},
-										commentNum: 10, //评论数量
-										shareNum: 10 //分享数量
-									},
-									{
-										userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-										userName: "昵称", //用户昵称
-										isguanzhu: false, //是否关注
-										title: "我是标题", //标题
-										type: "img", //img: 图片,video:视频
-										titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-										playNum: 200000, //播放次数
-										time: "2:47", //时长
-										infoNum: {
-											infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
-											smileNum: 10, //顶数量
-											sadNum: 10 //踩数量
-										},
-										commentNum: 10, //评论数量
-										shareNum: 10 //分享数量
-									}
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "video", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
+								},
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 2, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
+								},
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
+								},
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							}
 						]
 					},
 					{
-						list: [
+						loadText: "上拉加载更多",
+						list: [{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: true, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								infoNum: {
+									infoIndex: 0, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
+								},
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
 							{
-									userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-									userName: "昵称", //用户昵称
-									isguanzhu: true, //是否关注
-									title: "我是标题", //标题
-									type: "img", //img: 图片,video:视频
-									titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-									infoNum: {
-										infoIndex: 0, //0: 代表没有操作,1: 顶,2: 踩
-										smileNum: 10, //顶数量
-										sadNum: 10 //踩数量
-									},
-									commentNum: 10, //评论数量
-									shareNum: 10 //分享数量
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "video", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
 								},
-								{
-									userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-									userName: "昵称", //用户昵称
-									isguanzhu: false, //是否关注
-									title: "我是标题", //标题
-									type: "video", //img: 图片,video:视频
-									titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-									playNum: 200000, //播放次数
-									time: "2:47", //时长
-									infoNum: {
-										infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
-										smileNum: 10, //顶数量
-										sadNum: 10 //踩数量
-									},
-									commentNum: 10, //评论数量
-									shareNum: 10 //分享数量
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 2, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
 								},
-								{
-									userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-									userName: "昵称", //用户昵称
-									isguanzhu: false, //是否关注
-									title: "我是标题", //标题
-									type: "img", //img: 图片,video:视频
-									titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-									playNum: 200000, //播放次数
-									time: "2:47", //时长
-									infoNum: {
-										infoIndex: 2, //0: 代表没有操作,1: 顶,2: 踩
-										smileNum: 10, //顶数量
-										sadNum: 10 //踩数量
-									},
-									commentNum: 10, //评论数量
-									shareNum: 10 //分享数量
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
 								},
-								{
-									userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-									userName: "昵称", //用户昵称
-									isguanzhu: false, //是否关注
-									title: "我是标题", //标题
-									type: "img", //img: 图片,video:视频
-									titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-									playNum: 200000, //播放次数
-									time: "2:47", //时长
-									infoNum: {
-										infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
-										smileNum: 10, //顶数量
-										sadNum: 10 //踩数量
-									},
-									commentNum: 10, //评论数量
-									shareNum: 10 //分享数量
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: true, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								infoNum: {
+									infoIndex: 0, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
 								},
-								{
-										userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-										userName: "昵称", //用户昵称
-										isguanzhu: true, //是否关注
-										title: "我是标题", //标题
-										type: "img", //img: 图片,video:视频
-										titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-										infoNum: {
-											infoIndex: 0, //0: 代表没有操作,1: 顶,2: 踩
-											smileNum: 10, //顶数量
-											sadNum: 10 //踩数量
-										},
-										commentNum: 10, //评论数量
-										shareNum: 10 //分享数量
-									},
-									{
-										userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-										userName: "昵称", //用户昵称
-										isguanzhu: false, //是否关注
-										title: "我是标题", //标题
-										type: "video", //img: 图片,video:视频
-										titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-										playNum: 200000, //播放次数
-										time: "2:47", //时长
-										infoNum: {
-											infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
-											smileNum: 10, //顶数量
-											sadNum: 10 //踩数量
-										},
-										commentNum: 10, //评论数量
-										shareNum: 10 //分享数量
-									},
-									{
-										userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-										userName: "昵称", //用户昵称
-										isguanzhu: false, //是否关注
-										title: "我是标题", //标题
-										type: "img", //img: 图片,video:视频
-										titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-										playNum: 200000, //播放次数
-										time: "2:47", //时长
-										infoNum: {
-											infoIndex: 2, //0: 代表没有操作,1: 顶,2: 踩
-											smileNum: 10, //顶数量
-											sadNum: 10 //踩数量
-										},
-										commentNum: 10, //评论数量
-										shareNum: 10 //分享数量
-									},
-									{
-										userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-										userName: "昵称", //用户昵称
-										isguanzhu: false, //是否关注
-										title: "我是标题", //标题
-										type: "img", //img: 图片,video:视频
-										titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-										playNum: 200000, //播放次数
-										time: "2:47", //时长
-										infoNum: {
-											infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
-											smileNum: 10, //顶数量
-											sadNum: 10 //踩数量
-										},
-										commentNum: 10, //评论数量
-										shareNum: 10 //分享数量
-									},
-									{
-											userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-											userName: "昵称", //用户昵称
-											isguanzhu: true, //是否关注
-											title: "我是标题", //标题
-											type: "img", //img: 图片,video:视频
-											titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-											infoNum: {
-												infoIndex: 0, //0: 代表没有操作,1: 顶,2: 踩
-												smileNum: 10, //顶数量
-												sadNum: 10 //踩数量
-											},
-											commentNum: 10, //评论数量
-											shareNum: 10 //分享数量
-										},
-										{
-											userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-											userName: "昵称", //用户昵称
-											isguanzhu: false, //是否关注
-											title: "我是标题", //标题
-											type: "video", //img: 图片,video:视频
-											titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-											playNum: 200000, //播放次数
-											time: "2:47", //时长
-											infoNum: {
-												infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
-												smileNum: 10, //顶数量
-												sadNum: 10 //踩数量
-											},
-											commentNum: 10, //评论数量
-											shareNum: 10 //分享数量
-										},
-										{
-											userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-											userName: "昵称", //用户昵称
-											isguanzhu: false, //是否关注
-											title: "我是标题", //标题
-											type: "img", //img: 图片,video:视频
-											titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-											playNum: 200000, //播放次数
-											time: "2:47", //时长
-											infoNum: {
-												infoIndex: 2, //0: 代表没有操作,1: 顶,2: 踩
-												smileNum: 10, //顶数量
-												sadNum: 10 //踩数量
-											},
-											commentNum: 10, //评论数量
-											shareNum: 10 //分享数量
-										},
-										{
-											userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
-											userName: "昵称", //用户昵称
-											isguanzhu: false, //是否关注
-											title: "我是标题", //标题
-											type: "img", //img: 图片,video:视频
-											titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
-											playNum: 200000, //播放次数
-											time: "2:47", //时长
-											infoNum: {
-												infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
-												smileNum: 10, //顶数量
-												sadNum: 10 //踩数量
-											},
-											commentNum: 10, //评论数量
-											shareNum: 10 //分享数量
-										}
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "video", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
+								},
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 2, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
+								},
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
+								},
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: true, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								infoNum: {
+									infoIndex: 0, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
+								},
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "video", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
+								},
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 2, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
+								},
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							},
+							{
+								userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+								userName: "昵称", //用户昵称
+								isguanzhu: false, //是否关注
+								title: "我是标题", //标题
+								type: "img", //img: 图片,video:视频
+								titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+								playNum: 200000, //播放次数
+								time: "2:47", //时长
+								infoNum: {
+									infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
+									smileNum: 10, //顶数量
+									sadNum: 10 //踩数量
+								},
+								commentNum: 10, //评论数量
+								shareNum: 10 //分享数量
+							}
 						]
 					},
 					{
+						loadText: "上拉加载更多",
 						list: []
 					},
 					{
+						loadText: "上拉加载更多",
 						list: []
 					},
 					{
+						loadText: "上拉加载更多",
 						list: []
 					}
 				],
@@ -453,11 +475,10 @@
 		},
 		onLoad() {
 			uni.getSystemInfo({
-				success:  (res) => {
-				        console.log(res.windowHeight);
-						let height = (res.windowHeight-50)
-						this.swiperHeight = height
-				    }
+				success: (res) => {
+					let height = (res.windowHeight - 50)
+					this.swiperHeight = height
+				}
 			})
 		},
 		methods: {
@@ -468,14 +489,44 @@
 			// 滑动修改tabbar选项
 			changeIndex(e) {
 				this.activeIndex = e.detail.current
+			},
+			// 上拉加载更多
+			loadMore(index) {
+				if (this.tabList[index].loadText != "上拉加载更多") {
+					return
+				}
+				// 修改状态
+				this.tabList[index].loadText = "加载中...",
+					// 获取数据
+					setTimeout(() => {
+						let obj = {
+							userPic: "../../static/demo/userpic/12.jpg", //用户头像地址
+							userName: "昵称", //用户昵称
+							isguanzhu: true, //是否关注
+							title: "我是标题", //标题
+							type: "img", //img: 图片,video:视频
+							titlePic: "../../static/demo/datapic/11.jpg", //标题显示图像
+							infoNum: {
+								infoIndex: 0, //0: 代表没有操作,1: 顶,2: 踩
+								smileNum: 10, //顶数量
+								sadNum: 10 //踩数量
+							},
+							commentNum: 10, //评论数量
+							shareNum: 10 //分享数量
+						}
+						this.tabList[index].list.push(obj)
+						this.tabList[index].loadText = "上拉加载更多"
+					}, 1000)
 			}
 		},
 		components: {
 			indexList,
-			swiperHead
+			swiperHead,
+			loadMore
 		}
 	}
 </script>
 
 <style lang="scss">
+	
 </style>
