@@ -5,11 +5,17 @@
 		<swiper class="swiper-box" :style="{height: swiperHeight+'px'}" :current="activeIndex" @change="changeIndex">
 			<swiper-item v-for="(items,index) in tabList" :key="index">
 				<scroll-view scroll-y class="" :style="{height: swiperHeight+'px'}" @scrolltolower="loadMore(index)">
-					<block v-for="(item,index1) in items.list" :key="index1">
-						<index-list :item="item" :index="index1"></index-list>
-					</block>
-					<!-- 上拉加载更多 -->
-					<load-more :loadText="items.loadText"></load-more>
+					<template v-if="items.list.length>0">
+						<!-- 图文列表 -->
+						<block v-for="(item,index1) in items.list" :key="index1">
+							<index-list :item="item" :index="index1"></index-list>
+						</block>
+						<!-- 上拉加载更多 -->
+						<load-more :loadText="items.loadText"></load-more>
+					</template>
+					<template v-else>
+						<no-thing></no-thing>
+					</template>
 				</scroll-view>
 			</swiper-item>
 		</swiper>
@@ -19,7 +25,8 @@
 <script>
 	import indexList from "../../components/index/index-list.vue"
 	import swiperHead from "../../components/index/swiper-head.vue"
-	import loadMore from "../../components/index/load-more.vue"
+	import loadMore from "../../components/common/load-more.vue"
+	import noThing from "../../components/common/no-thing.vue"
 	export default {
 		data() {
 			return {
@@ -522,7 +529,8 @@
 		components: {
 			indexList,
 			swiperHead,
-			loadMore
+			loadMore,
+			noThing
 		}
 	}
 </script>
