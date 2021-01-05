@@ -1,69 +1,108 @@
 <template>
-		<view class="index-list">
-			<view class="index-list1">
-				<view>
-					<image :src="item.userPic" mode="widthFix" lazy-load></image>
-					昵称
+	<view class="index-list animated fadeInLeft fast">
+		<view class="index-list1">
+			<view>
+				<image :src="item.userPic" mode="widthFix" lazy-load></image>
+				昵称
+			</view>
+			<view v-show="!item.isguanzhu">
+				<view class="icon iconfont icon-zengjia" @tap="guanzhu">关注</view>
+			</view>
+		</view>
+		<view class="index-list2">{{item.title}}</view>
+		<view class="index-list3">
+			<!-- 图片 -->
+			<image :src="item.titlePic" mode="widthFix" lazy-load></image>
+			<!-- 视频 -->
+			<template v-if="item.type === 'video'">
+				<view class="index-list-play icon iconfont icon-bofang"></view>
+				<view class="index-list-info">{{item.playNum}}次播放 {{item.time}}</view>
+			</template>
+		</view>
+		<view class="index-list4">
+			<view class="icon-box">
+				<view class="icon-content" :class="{'active': item.infoNum.infoIndex === 1}">
+					<view class="icon iconfont icon-icon_xiaolian-mian"@tap="caozuo('ding')">
+						<text class="icon-text">{{item.infoNum.smileNum}}</text>
+					</view>
 				</view>
-				<view v-show="item.isguanzhu">
-					<view class="icon iconfont icon-zengjia">关注</view>
+				<view class="icon-content" :class="{'active': item.infoNum.infoIndex === 2}">
+					<view class="icon iconfont icon-kulian" @tap="caozuo('cai')" >
+						<text class="icon-text">{{item.infoNum.sadNum}}</text>
+					</view>
 				</view>
 			</view>
-			<view class="index-list2">{{item.title}}</view>
-			<view class="index-list3">
-				<!-- 图片 -->
-				<image :src="item.titlePic" mode="widthFix" lazy-load></image>
-				<!-- 视频 -->
-				<template v-if="item.type === 'video'">
-					<view class="index-list-play icon iconfont icon-bofang"></view>
-					<view class="index-list-info">{{item.playNum}}次播放 {{item.time}}</view>
-				</template>
-			</view>
-			<view class="index-list4">
-				<view class="icon-box">
-					<view class="icon-content" :class="{'active': item.infoNum.infoIndex === 1}">
-						<view class="icon iconfont icon-icon_xiaolian-mian">
-							<text class="icon-text">{{item.infoNum.smileNum}}</text>
-						</view>
-					</view>
-					<view class="icon-content" :class="{'active': item.infoNum.infoIndex === 2}">
-						<view class="icon iconfont icon-kulian">
-							<text class="icon-text">{{item.infoNum.sadNum}}</text>
-						</view>
+			<view class="icon-box">
+				<view class="icon-content">
+					<view class="icon iconfont icon-pinglun1">
+						<text class="icon-text">{{item.commentNum}}</text>
 					</view>
 				</view>
-				<view class="icon-box">
-					<view class="icon-content">
-						<view class="icon iconfont icon-pinglun1">
-							<text class="icon-text">{{item.commentNum}}</text>
-						</view>
-					</view>
-					<view class="icon-content">
-						<view class="icon iconfont icon-zhuanfa">
-							<text class="icon-text">{{item.shareNum}}</text>
-						</view>
+				<view class="icon-content">
+					<view class="icon iconfont icon-zhuanfa">
+						<text class="icon-text">{{item.shareNum}}</text>
 					</view>
 				</view>
 			</view>
 		</view>
+	</view>
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				
+
 			};
 		},
 		props: {
 			item: Object,
 			index: Number
+		},
+		methods: {
+			// 用户关注事件
+			guanzhu() {
+				this.item.isguanzhu = true,
+					uni.showToast({
+						title: "关注成功"
+					})
+			},
+			// 用户顶踩事件
+			caozuo(type) {
+				// infoNum: {
+				// 	infoIndex: 1, //0: 代表没有操作,1: 顶,2: 踩
+				// 	smileNum: 10, //顶数量
+				// 	sadNum: 10 //踩数量
+				// }
+				switch (type) {
+					case "ding":
+						if (this.item.infoNum.infoIndex == 1) {
+							return
+						};
+						this.item.infoNum.smileNum++;
+						if(this.item.infoNum.infoIndex ==2) {
+							this.item.infoNum.sadNum--;
+						}
+						this.item.infoNum.infoIndex = 1
+						break;
+					case "cai":
+						if (this.item.infoNum.infoIndex == 2) {
+							return
+						};
+						this.item.infoNum.sadNum++;
+						if(this.item.infoNum.infoIndex == 1) {
+							this.item.infoNum.smileNum--
+						}
+						this.item.infoNum.infoIndex = 2
+						break;
+				}
+			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-.index-list {
+	.index-list {
 		padding: 20rpx;
 		border-bottom: 1rpx solid #ccc;
 
@@ -127,7 +166,7 @@
 				font-size: 22rpx;
 				padding: 0 12rpx;
 			}
-			
+
 		}
 
 		.index-list4 {
@@ -140,13 +179,16 @@
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
+
 				.icon-content {
 					display: flex;
 					align-items: center;
 					margin-right: 10rpx;
+
 					&.active {
 						color: #F0AD4E;
 					}
+
 					.icon-text {
 						margin: 0 10rpx;
 					}
