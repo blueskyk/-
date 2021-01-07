@@ -531,10 +531,30 @@
 			swiperHead,
 			loadMore,
 			noThing
+		},
+		// 点搜索框跳转到搜索页面
+		onNavigationBarSearchInputClicked() {
+			uni.navigateTo({
+				url: '/pages/search/search',
+				success: () => {
+					console.log("搜索")
+				}
+			});
+		},
+		onNavigationBarButtonTap(e) {
+			switch (e.index) {
+				case 1: 
+				uni.navigateTo({
+					url: '/pages/add-input/add-input'
+				});
+					break;
+				case value:
+					break;
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	
+
 </style>
