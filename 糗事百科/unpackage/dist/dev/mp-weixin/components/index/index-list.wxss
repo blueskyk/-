@@ -51,8 +51,7 @@
 .index-list .index-list1 view:first-child image.data-v-20a05451 {
   width: 90rpx;
   height: 90rpx;
-  -webkit-border-radius: 100%;
-          border-radius: 100%;
+  border-radius: 100%;
   margin-right: 10rpx;
 }
 .index-list .index-list1 view.data-v-20a05451:last-child {
@@ -64,8 +63,7 @@
   -webkit-align-items: center;
           align-items: center;
   background: #f4f4f4;
-  -webkit-border-radius: 5rpx;
-          border-radius: 5rpx;
+  border-radius: 5rpx;
 }
 .index-list .index-list2.data-v-20a05451 {
   padding-top: 15rpx;
@@ -86,8 +84,7 @@
 }
 .index-list .index-list3 image.data-v-20a05451 {
   width: 100%;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
 }
 .index-list .index-list3 .index-list-play.data-v-20a05451 {
   position: absolute;
@@ -98,8 +95,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   bottom: 8rpx;
   right: 8rpx;
-  -webkit-border-radius: 40rpx;
-          border-radius: 40rpx;
+  border-radius: 40rpx;
   font-size: 22rpx;
   padding: 0 12rpx;
 }

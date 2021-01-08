@@ -5,7 +5,7 @@
 				<image :src="item.userPic" mode="widthFix" lazy-load></image>
 				昵称
 			</view>
-			<view v-show="!item.isguanzhu">
+			<view v-show="!isguanzhu">
 				<view class="icon iconfont icon-zengjia" @tap="guanzhu">关注</view>
 			</view>
 		</view>
@@ -21,14 +21,14 @@
 		</view>
 		<view class="index-list4">
 			<view class="icon-box">
-				<view class="icon-content" :class="{'active': item.infoNum.infoIndex === 1}">
+				<view class="icon-content" :class="{'active': infoNum.infoIndex === 1}">
 					<view class="icon iconfont icon-icon_xiaolian-mian"@tap="caozuo('ding')">
-						<text class="icon-text">{{item.infoNum.smileNum}}</text>
+						<text class="icon-text">{{infoNum.smileNum}}</text>
 					</view>
 				</view>
-				<view class="icon-content" :class="{'active': item.infoNum.infoIndex === 2}">
+				<view class="icon-content" :class="{'active': infoNum.infoIndex === 2}">
 					<view class="icon iconfont icon-kulian" @tap="caozuo('cai')" >
-						<text class="icon-text">{{item.infoNum.sadNum}}</text>
+						<text class="icon-text">{{infoNum.sadNum}}</text>
 					</view>
 				</view>
 			</view>
@@ -52,7 +52,8 @@
 	export default {
 		data() {
 			return {
-
+				isguanzhu: this.item.isguanzhu,
+				infoNum: this.item.infoNum
 			};
 		},
 		props: {
@@ -62,7 +63,7 @@
 		methods: {
 			// 用户关注事件
 			guanzhu() {
-				this.item.isguanzhu = true,
+				this.isguanzhu = true
 					uni.showToast({
 						title: "关注成功"
 					})
@@ -76,24 +77,24 @@
 				// }
 				switch (type) {
 					case "ding":
-						if (this.item.infoNum.infoIndex == 1) {
+						if (this.infoNum.infoIndex == 1) {
 							return
 						};
-						this.item.infoNum.smileNum++;
-						if(this.item.infoNum.infoIndex ==2) {
-							this.item.infoNum.sadNum--;
+						this.infoNum.smileNum++;
+						if(this.infoNum.infoIndex ==2) {
+							this.infoNum.sadNum--;
 						}
-						this.item.infoNum.infoIndex = 1
+						this.infoNum.infoIndex = 1
 						break;
 					case "cai":
-						if (this.item.infoNum.infoIndex == 2) {
+						if (this.infoNum.infoIndex == 2) {
 							return
 						};
-						this.item.infoNum.sadNum++;
-						if(this.item.infoNum.infoIndex == 1) {
-							this.item.infoNum.smileNum--
+						this.infoNum.sadNum++;
+						if(this.infoNum.infoIndex == 1) {
+							this.infoNum.smileNum--
 						}
-						this.item.infoNum.infoIndex = 2
+						this.infoNum.infoIndex = 2
 						break;
 				}
 			}
