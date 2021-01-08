@@ -34,7 +34,7 @@
 		.swiper-tab-list {
 			display: inline-block;
 			font-size: 30rpx;
-			margin: 0 30rpx;
+			margin: 0 10rpx;
 
 			text {
 				color: #000;

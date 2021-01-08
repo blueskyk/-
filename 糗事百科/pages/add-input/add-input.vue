@@ -42,7 +42,8 @@ export default {
 			yinsi: '所有人可见',
 			text: '',
 			imageList: [],
-			showPopup: true
+			showPopup: true,
+			isget: false
 		};
 	},
 	components: {
@@ -51,6 +52,13 @@ export default {
 		uniPopup,
 		uniPopupMessage,
 		uniPopupDialog
+	},
+	onBackPress() {
+		if(!this.text && this.imageList < 1) {return}
+		if (!this.isget) {
+			this.baocun();
+			return true;
+		}
 	},
 	methods: {
 		// 返回上一页
@@ -61,7 +69,7 @@ export default {
 		},
 		// 发布事件
 		submit() {
-			console.log("发布")
+			console.log('发布');
 		},
 		// 修改用户隐私
 		changePersonal() {
@@ -78,16 +86,34 @@ export default {
 		},
 		// 打开弹窗提醒
 		open() {
-			this.$refs.popup.open()
+			this.$refs.popup.open();
 		},
 		// 关闭弹窗提醒
 		close() {
 			this.$refs.popup.close();
+		},
+		baocun() {
+			uni.showModal({
+				content: '是否要保存草稿',
+				cancelText: '不保存',
+				confirmText: '保存',
+				success: res => {
+					if (res.confirm) {
+						console.log('保存');
+					} else {
+						console.log('不保存');
+					}
+					this.isget = true;
+					uni.navigateBack({
+						delta: 1
+					});
+				}
+			});
 		}
 	},
 	mounted() {
 		// 提示用户发布规则
-		this.open()
+		this.open();
 	}
 };
 </script>
@@ -101,7 +127,6 @@ export default {
 		border: 1rpx solid #eee;
 	}
 }
-
 .cell-pd {
 	padding: 22rpx 30rpx;
 }
@@ -112,7 +137,6 @@ export default {
 	image {
 		width: 50%;
 	}
-	
 	button {
 		background-color: #ffe934;
 		color: #171606;
