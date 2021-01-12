@@ -205,7 +205,7 @@ export default {
 		},
 		// 滑动修改tabbar选项
 		changeIndex(e) {
-			this.activeIndex = e.detail.current;
+			this.tabIndex = e.detail.current;
 		},
 		// 上拉加载更多
 		loadMore() {

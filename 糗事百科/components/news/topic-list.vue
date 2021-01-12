@@ -1,5 +1,5 @@
 <template>
-	<view class="topic-list u-f animated fadeInLeft fast">
+	<view class="topic-list u-f animated fadeInLeft fast" @tap="toDetail">
 		<image :src="item.titlePic" mode="widthFix" lazy-load></image>
 		<view class="new-info">
 			<view class="info-name">#{{item.title}}#</view>
@@ -14,6 +14,13 @@
 		props: {
 			item:Object,
 			index: Number
+		},
+		methods: {
+			toDetail() {
+				uni.navigateTo({
+					url: "../../pages/topic-detail/topic-detail"
+				});
+			}
 		}
 	}
 </script>

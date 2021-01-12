@@ -2,7 +2,7 @@
 	<view class="topic-nav">
 		<view class="u-f-ac u-f-jsb hot-title-box">
 			<view class="hot-title">热门分类</view>
-			<view class="u-f-ajc hot-more">
+			<view class="u-f-ajc hot-more" @tap="toCate">
 				<text>更多</text>
 				<view class="icon iconfont icon-jinru"></view>
 			</view>
@@ -17,6 +17,13 @@
 	export default {
 		props: {
 			nav:Array
+		},
+		methods: {
+			toCate() {
+				uni.navigateTo({
+					url: "/pages/topic-cate/topic-cate"
+				});
+			}
 		}
 	}
 </script>

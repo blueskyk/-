@@ -5,6 +5,7 @@
 			"style": {
 				"app-plus": {
 					"scrollIndicator":"none",
+					"bounce":"false",
 					"titleNView":{
 						"searchInput": {
 							"align":"center",
@@ -45,7 +46,8 @@
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false,
 				"app-plus": {
-					"titleNView":false
+					"titleNView":false,
+					"bounce":"false"
 				}
             }
             
@@ -76,6 +78,7 @@
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false,
 				"app-plus": {
+					"bounce":"false",
 					"scrollIndicator":"none",
 					"titleNView":{
 						"autoBackButton": false,
@@ -114,6 +117,24 @@
 				"app-plus": {
 					"titleNView":false
 				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/topic-cate/topic-cate",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "话题分类",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/topic-detail/topic-detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
             }
             
         }
