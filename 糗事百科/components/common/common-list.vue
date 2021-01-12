@@ -107,13 +107,16 @@ export default {
 		}
 		.info-box {
 			color: #aaa;
+			font-size: 28rpx;
 			.iconfont {
 				margin-left: 10rpx;
 				padding-left: 5rpx;
+				font-size: 28rpx;
 			}
 		}
 		.video-box {
 			position: relative;
+			margin-bottom: 10rpx;
 			.commen-list-play,
 			.commen-list-playinfo {
 				position: absolute;
