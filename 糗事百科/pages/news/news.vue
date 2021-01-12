@@ -2,10 +2,6 @@
 	<view>
 		<!-- 自定导航栏 -->
 		<news-nav-bar :tabBars="tabBars" :tabIndex="tabIndex" @change-tab="changeTab"></news-nav-bar>
-		<!-- 列表 -->
-		<!-- <block v-for="(item, index) in list" :key="index">
-			<common-list :item="item" :index="index"></common-list>
-		</block> -->
 
 		<swiper class="swiper-box" :style="{ height: swiperHeight + 'px' }" :current="tabIndex" @change="changeIndex">
 			<!-- 关注 -->
@@ -17,8 +13,23 @@
 					<load-more :loadText="guanzhu.loadText"></load-more>
 				</scroll-view>
 			</swiper-item>
-			<!-- 话题 -->
-			<swiper-item><scroll-view scroll-y class="" :style="{ height: swiperHeight + 'px' }">话题</scroll-view></swiper-item>
+			<swiper-item>
+				<scroll-view scroll-y class="" :style="{ height: swiperHeight + 'px' }">
+					<!-- 搜索框 -->
+					<view class="search-input"><input class="uni-input" placeholder-class="icon iconfont icon-sousuo center-input" type="text" placeholder="搜索内容" /></view>
+					<!--轮播图 -->
+					<news-swiper :swiper="topic.swiper"></news-swiper>
+					<!-- 热门分类 -->
+					<topic-nav :nav="topic.nav"></topic-nav>
+					<!-- 最近更新 -->
+					<view class="topic-new">
+						<view class="new-title">最近更新</view>
+						<block v-for="(item,index) in topic.list" :key="index">
+							<topic-list :item="item" :index="index"></topic-list>
+						</block>
+					</view>
+				</scroll-view>
+			</swiper-item>
 		</swiper>
 	</view>
 </template>
@@ -27,11 +38,17 @@
 import commonList from '../../components/common/common-list.vue';
 import newsNavBar from '../../components/news/news-nav-bar.vue';
 import loadMore from '../../components/common/load-more.vue';
+import newsSwiper from '../../components/news/news-swiper.vue';
+import topicNav from "../../components/news/topic-nav.vue";
+import topicList from "../../components/news/topic-list.vue"
 export default {
 	components: {
 		commonList,
 		newsNavBar,
-		loadMore
+		loadMore,
+		newsSwiper,
+		topicNav,
+		topicList
 	},
 	data() {
 		return {
@@ -112,6 +129,72 @@ export default {
 						goodnum: 40
 					}
 				]
+			},
+			// 轮播图数组
+			topic: {
+				swiper: [
+					{ imgsrc: '../../static/demo/banner1.jpg', id: 1 }, 
+					{ imgsrc: '../../static/demo/banner2.jpg', id: 2 }, 
+					{ imgsrc: '../../static/demo/banner3.jpg', id: 3 }],
+					nav: [
+						{name: "最新"},
+						{name: "游戏"},
+						{name: "打卡"},
+						{name: "情感"},
+						{name: "故事"},
+						{name: "喜爱"}
+					],
+					list: [
+						{
+							titlePic: "../../static/demo/topicpic/13.jpeg",
+							title: "话题名称",
+							desc: "我是话题描述",
+							totalNum:50,
+							todayNmu: 10
+						},
+						{
+							titlePic: "../../static/demo/topicpic/13.jpeg",
+							title: "话题名称",
+							desc: "我是话题描述",
+							totalNum:50,
+							todayNmu: 10
+						},
+						{
+							titlePic: "../../static/demo/topicpic/13.jpeg",
+							title: "话题名称",
+							desc: "我是话题描述",
+							totalNum:50,
+							todayNmu: 10
+						},
+						{
+							titlePic: "../../static/demo/topicpic/13.jpeg",
+							title: "话题名称",
+							desc: "我是话题描述",
+							totalNum:50,
+							todayNmu: 10
+						},
+						{
+							titlePic: "../../static/demo/topicpic/13.jpeg",
+							title: "话题名称",
+							desc: "我是话题描述",
+							totalNum:50,
+							todayNmu: 10
+						},
+						{
+							titlePic: "../../static/demo/topicpic/13.jpeg",
+							title: "话题名称",
+							desc: "我是话题描述",
+							totalNum:50,
+							todayNmu: 10
+						},
+						{
+							titlePic: "../../static/demo/topicpic/13.jpeg",
+							title: "话题名称",
+							desc: "我是话题描述",
+							totalNum:50,
+							todayNmu: 10
+						}
+					]	
 			}
 		};
 	},
@@ -164,4 +247,26 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.search-input {
+	padding: 20rpx;
+	.uni-input {
+		background-color: #f4f4f4;
+		border-radius: 10rpx;
+	}
+	.center-input {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 27rpx;
+	}
+}
+
+.topic-new {
+	padding: 20rpx;
+	.new-title {
+		font-size: 32rpx;
+		margin-bottom: 5rpx;
+	}
+}
+</style>
