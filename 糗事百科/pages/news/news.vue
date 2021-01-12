@@ -1,6 +1,7 @@
 <template>
 	<view>
-		<uni-nav-bar :statusBar="true" @clickRight="openAdd">
+		<!-- 自定导航栏 -->
+		<uni-nav-bar :fixed="true" :statusBar="true" @clickRight="openAdd">
 			<!-- 左边 -->
 			<view slot="left">
 				<view class="nav-left"><view class="icon iconfont icon-qiandao"></view></view>
@@ -17,29 +18,46 @@
 			</view>
 		</uni-nav-bar>
 		<!-- 列表 -->
-		<view class="common-list u-f">
-			<view class="common-list-left">
-				<image src="../../static/demo/userpic/14.jpg" mode="widthFix" lazy-load></image>
-			</view>
-			<view class="common-list-right">
-				<view class="u-f-ac u-f-jsb user-box">
-					<view class="u-f-ac user-name">昵称 <view class="icon iconfont icon-nan user-age u-f-ac">20</view></view>
-					<view class="icon iconfont icon-zengjia follow">关注</view>
+		<block v-for="(item,index) in list" :key="index">
+			<view class="common-list u-f">
+				<view class="common-list-left">
+					<image :src="item.userpic" mode="widthFix" lazy-load></image>
 				</view>
-				<view class="title">我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题</view>
-				<view>
-					<image class="bg-img" src="../../static/demo/datapic/13.jpg" mode="widthFix" lazy-load></image>
-				</view>
-				<view class="u-f-ac u-f-jsb info-box">
-					<view>江苏 徐州</view>
-					<view class="u-f-ac">
-						<view class="icon iconfont icon-zhuanfa">10</view>
-						<view class="icon iconfont icon-pinglun1">20</view>
-						<view class="icon iconfont icon-dianzan1">30</view>
+				<view class="common-list-right">
+					<view class="u-f-ac u-f-jsb user-box">
+						<view class="u-f-ac user-name">{{item.username}} <view class="icon iconfont  user-age u-f-ac"
+						:class="[item.sex == 0? 'icon-nan' : 'icon-nv']">
+						20</view></view>
+						<view v-show="!item.isguanzhu" class="icon iconfont icon-zengjia follow">{{item.age}}</view>
+					</view>
+					<view class="title">{{item.title}}</view>
+					<view class="video-box u-f-ajc">
+						<!-- 图片 -->
+						<image class="bg-img" v-if="item.titlepic" :src="item.titlepic" mode="widthFix" lazy-load></image>
+						<!-- 视频 -->
+						<template v-if="item.video">
+							<view class="commen-list-play icon iconfont icon-bofang"></view>
+							<view class="commen-list-playinfo">
+								{{item.video.looknum}} 次播放 {{item.video.time}}
+							</view>
+						</template>
+						<!-- 分享 -->
+						<view class="common-list-share u-f-ac" v-if="item.share">
+							<image :src="item.share.titlepic" mode="widthFix"></image>
+							<view>{{item.share.title}}</view>
+						</view>
+					</view>
+					<view class="u-f-ac u-f-jsb info-box">
+						<view>{{item.path}}</view>
+						<view class="u-f-ac">
+							<view class="icon iconfont icon-zhuanfa">{{item.sharenum}}</view>
+							<view class="icon iconfont icon-pinglun1">{{item.commentnum}}</view>
+							<view class="icon iconfont icon-dianzan1">{{item.goodnum}}</view>
+						</view>
 					</view>
 				</view>
 			</view>
-		</view>
+		</block>
 	</view>
 </template>
 
@@ -52,7 +70,79 @@ export default {
 	data() {
 		return {
 			tabIndex: 0,
-			tabBars: [{ name: '关注', id: 'guanzhi' }, { name: '话题', id: 'huati' }]
+			tabBars: [{ name: '关注', id: 'guanzhi' }, { name: '话题', id: 'huati' }],
+			list: [
+				// 文字
+				{
+					userpic: "../../static/demo/userpic/14.jpg",
+					username: "昵称",
+					sex: 0, //0 男 1 女
+					age: 20,
+					isguanzhu: false,
+					title: "我是标题",
+					titlepic: "",
+					video: false,
+					share: false,
+					path: "江苏 徐州",
+					sharenum: 20,
+					commentnum: 30,
+					goodnum: 40
+				},
+				// 图文
+				{
+					userpic: "../../static/demo/userpic/14.jpg",
+					username: "昵称",
+					sex: 0, //0 男 1 女
+					age: 20,
+					isguanzhu: false,
+					title: "我是标题",
+					titlepic: "../../static/demo/datapic/13.jpg",
+					video: false,
+					share: false,
+					path: "江苏 徐州",
+					sharenum: 20,
+					commentnum: 30,
+					goodnum: 40
+				},
+				// 视频
+				{
+					userpic: "../../static/demo/userpic/14.jpg",
+					username: "昵称",
+					sex: 0, //0 男 1 女
+					age: 20,
+					isguanzhu: false,
+					title: "我是标题",
+					titlepic: "../../static/demo/datapic/13.jpg",
+					video: {
+						looknum: "20w",
+						time: "2:47"
+					},
+					share: false,
+					path: "江苏 徐州",
+					sharenum: 20,
+					commentnum: 30,
+					goodnum: 40
+				},
+				// 分享
+				{
+					userpic: "../../static/demo/userpic/14.jpg",
+					username: "昵称",
+					sex: 0, //0 男 1 女
+					age: 20,
+					isguanzhu: false,
+					title: "我是标题",
+					titlepic: "",
+					video: false,
+					share: {
+						title: "我是标题",
+						titlepic: "../../static/demo/datapic/14.jpg"
+					},
+					path: "江苏 徐州",
+					sharenum: 20,
+					commentnum: 30,
+					goodnum: 40
+				}
+			]
 		};
 	},
 	methods: {
@@ -154,6 +244,36 @@ export default {
 			.iconfont {
 				margin-left: 10rpx;
 				padding-left: 5rpx;
+			}
+		}
+		.video-box {
+			position: relative;
+			.commen-list-play,.commen-list-playinfo {
+				position: absolute;
+				color: #fff;
+			}
+			.commen-list-play {
+				font-size: 100rpx;
+			}
+			
+			.commen-list-playinfo {
+				right: 10rpx;
+				bottom: 10rpx;
+				background: rgba(51,51,51,.73);
+				border-radius: 20rpx;
+				padding: 0 10rpx;
+				font-size: 20rpx;
+			}
+			.common-list-share {
+				width: 100%;
+				background: #eee;
+				padding: 10rpx;
+				border-radius: 10rpx;
+				image {
+					width: 200rpx;
+					height: 150rpx;
+					margin-right: 10rpx;
+				}
 			}
 		}
 	}
