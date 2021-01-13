@@ -134,7 +134,18 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"scrollIndicator":"none",
+					"titleNView": {
+						"type":"transparent",
+						"buttons": [
+							{
+								"type":"menu"
+							}
+						]
+					}
+				}
             }
             
         }
