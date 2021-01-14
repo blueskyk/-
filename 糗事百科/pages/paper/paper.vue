@@ -68,11 +68,74 @@ export default {
 					info: "我是信息",
 					noReadNum: "17"
 				}
-				
 			]
 		};
 	},
-	methods: {}
+	methods: {
+		// 获取数据
+		getData() {
+			setTimeout(() => {
+				let arr = [
+					{
+						userPic: "../../static/demo/userpic/6.jpg",
+						userName: "我是昵称",
+						time: "11:07",
+						info: "我是信息",
+						noReadNum: "17"
+					},
+					{
+						userPic: "../../static/demo/userpic/6.jpg",
+						userName: "我是昵称",
+						time: "11:07",
+						info: "我是信息",
+						noReadNum: "0"
+					},
+					{
+						userPic: "../../static/demo/userpic/6.jpg",
+						userName: "我是昵称",
+						time: "11:07",
+						info: "我是信息",
+						noReadNum: "0"
+					},
+					{
+						userPic: "../../static/demo/userpic/6.jpg",
+						userName: "我是昵称",
+						time: "11:07",
+						info: "我是信息",
+						noReadNum: "17"
+					},
+					{
+						userPic: "../../static/demo/userpic/6.jpg",
+						userName: "我是昵称",
+						time: "11:07",
+						info: "我是信息",
+						noReadNum: "17"
+					},
+					
+					{
+						userPic: "../../static/demo/userpic/6.jpg",
+						userName: "我是昵称",
+						time: "11:07",
+						info: "我是信息",
+						noReadNum: "17"
+					},
+					{
+						userPic: "../../static/demo/userpic/6.jpg",
+						userName: "我是昵称",
+						time: "11:07",
+						info: "我是信息",
+						noReadNum: "17"
+					}
+				]
+				this.list = arr
+				uni.stopPullDownRefresh()
+			}, 1000);
+		}
+	},
+	onPullDownRefresh() {
+		// 获取数据的方法
+		this.getData()
+	}
 };
 </script>
 
