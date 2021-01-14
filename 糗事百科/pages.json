@@ -63,7 +63,7 @@
 						"buttons": [
 							// 左边
 							{
-								"color":"#ff9619",
+								"color":"#000",
 								"colorPressed":"#bbb",
 								"float":"left",
 								"fontSize":"22px",
