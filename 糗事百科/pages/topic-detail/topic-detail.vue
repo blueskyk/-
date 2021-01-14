@@ -7,18 +7,16 @@
 		<!-- tab切换 -->
 		<swiper-head @itemClick="itemClick" :tabBars="tabBars" :activeIndex="tabIndex" swiperStyle="border: none;" swiperItem="width: 50%;"></swiper-head>
 		<!-- 列表 -->
-	<view class="topic-detail-list animated fadeInLeft fast">
-		<block v-for="(item,index) in tabList" :key="index">
-			<template v-if="tabIndex==index">
-				<!-- 列表 -->
-				<block v-for="(list,listIndex) in item.list" :key="listIndex">
-					<common-list :item="list" :index="listIndex"></common-list>
-				</block>
-				<!-- 上拉加载 -->
-				<load-more :loadText="item.loadText"></load-more>
-			</template>
-		</block>
-	</view>
+		<view class="topic-detail-list animated fadeInLeft fast">
+			<block v-for="(item, index) in tabList" :key="index">
+				<template v-if="tabIndex == index">
+					<!-- 列表 -->
+					<block v-for="(list, listIndex) in item.list" :key="listIndex"><common-list :item="list" :index="listIndex"></common-list></block>
+					<!-- 上拉加载 -->
+					<load-more :loadText="item.loadText"></load-more>
+				</template>
+			</block>
+		</view>
 	</view>
 </template>
 
@@ -189,11 +187,75 @@ export default {
 					this.tabList[this.tabIndex].list.push(obj);
 					this.tabList[this.tabIndex].loadText = '上拉加载更多';
 				}, 1000);
+		},
+		// 获取数据
+		getdata() {
+			// 下拉刷新
+			setTimeout(() => {
+			let arr = [
+							// 文字
+							{
+								userpic: '../../static/demo/userpic/14.jpg',
+								username: '昵称',
+								sex: 0, //0 男 1 女
+								age: 20,
+								isguanzhu: false,
+								title: '我是标题',
+								titlepic: '',
+								video: false,
+								share: false,
+								path: '江苏 徐州',
+								sharenum: 20,
+								commentnum: 30,
+								goodnum: 40
+							},
+							// 图文
+							{
+								userpic: '../../static/demo/userpic/14.jpg',
+								username: '昵称',
+								sex: 0, //0 男 1 女
+								age: 20,
+								isguanzhu: false,
+								title: '我是标题',
+								titlepic: '../../static/demo/datapic/13.jpg',
+								video: false,
+								share: false,
+								path: '江苏 徐州',
+								sharenum: 20,
+								commentnum: 30,
+								goodnum: 40
+							},
+							// 视频
+							{
+								userpic: '../../static/demo/userpic/14.jpg',
+								username: '昵称',
+								sex: 0, //0 男 1 女
+								age: 20,
+								isguanzhu: false,
+								title: '我是标题',
+								titlepic: '../../static/demo/datapic/13.jpg',
+								video: {
+									looknum: '20w',
+									time: '2:47'
+								},
+								share: false,
+								path: '江苏 徐州',
+								sharenum: 20,
+								commentnum: 30,
+								goodnum: 40
+							}
+						]
+						this.tabList[this.tabIndex].list = arr
+						uni.stopPullDownRefresh()
+			}, 1000);
 		}
 	},
 	onReachBottom() {
 		// 下拉加载更多
 		this.loadMore()
+	},
+	onPullDownRefresh() {
+		this.getdata()
 	},
 	components: {
 		topicInfo,
