@@ -56,8 +56,32 @@
             "path" : "pages/paper/paper",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "小纸条",
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"buttons": [
+							// 左边
+							{
+								"color":"#ff9619",
+								"colorPressed":"#bbb",
+								"float":"left",
+								"fontSize":"22px",
+								"fontSrc":"/static/font/iconfont.ttf",
+								"text": "\ue845"
+							},
+							// 右边
+							{
+								"color":"#000",
+								"colorPressed":"#bbb",
+								"float":"right",
+								"fontSize":"22px",
+								"fontSrc":"/static/font/iconfont.ttf",
+								"text": "\ue684"
+							}
+						]
+					}
+				}
 				
             }
             
