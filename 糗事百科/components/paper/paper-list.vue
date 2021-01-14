@@ -1,5 +1,5 @@
 <template>
-	<view class="paper-list u-f-ac">
+	<view class="paper-list u-f-ac animated fadeInLeft fast">
 		<image :src="item.userPic" mode="widthFix"></image>
 		<view class="user-box">
 			<view class="u-f-ac u-f-jsb user-box">
