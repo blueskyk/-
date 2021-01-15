@@ -229,6 +229,9 @@ export default {
 		switch (e.index) {
 			case 0:
 				this.hidePopup();
+				uni.navigateTo({
+					url:"../user-list/user-list"
+				})
 				break;
 			case 1:
 				this.showPopup();

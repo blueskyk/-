@@ -173,6 +173,44 @@
             }
             
         }
+        ,{
+            "path" : "pages/user-list/user-list",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+            	"app-plus": {
+					"animationType":"slide-in-left",
+            		"bounce":"false",
+            		"scrollIndicator":"none",
+            		"titleNView":{
+            			"autoBackButton": false,
+            			// 配置搜索框
+            			"searchInput": {
+            				"align":"left",
+            				"backgroundColor":"#f7f7f7",
+            				"borderRadius":"4px",
+            				"placeholder":"搜索糗事",
+            				"placeholderColor":"#ccc",
+            				"disabled": false
+            			},
+            			"buttons": [
+            				// 右边
+            				{
+            					"color":"#000",
+            					"colorPressed":"#bbb",
+            					"float":"right",
+            					"fontSize":"16px",
+            					"text": "取消"
+            				}
+            			]
+            		}
+            	}
+            	
+            	
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
