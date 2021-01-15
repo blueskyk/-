@@ -1,18 +1,7 @@
 <template>
 	<view class="paper-box">
-		<!-- 蒙版 -->
-		<view class="popup-mask" v-show="show" @tap="hidePopup"></view>
 		<!-- 操作菜单 -->
-		<view class="paper-popup" v-show="show">
-			<view class="u-f-ac popup-box" hover-class="popup-hover" @tap="addFriend">
-				<view class="icon iconfont icon-sousuo"></view>
-				加糗友
-			</view>
-			<view class="u-f-ac popup-box" hover-class="popup-hover" @tap="clear">
-				<view class="icon iconfont icon-qingchu"></view>
-				清除缓存
-			</view>
-		</view>
+		<paper-popus :show="show" @hide="hidePopup" @addFriend="addFriend" @clear="clear"></paper-popus>
 		<!-- 小纸条列表 -->
 		<block v-for="(item, index) in list" :key="index"><paper-list :item="item" :index="index"></paper-list></block>
 		<!-- 上拉加载 -->
@@ -23,10 +12,12 @@
 <script>
 import paperList from '../../components/paper/paper-list.vue';
 import loadMore from '../../components/common/load-more.vue';
+import paperPopus from "../../components/paper/paper-popus.vue"
 export default {
 	components: {
 		paperList,
-		loadMore
+		loadMore,
+		paperPopus
 	},
 	data() {
 		return {
@@ -250,33 +241,6 @@ export default {
 <style lang="scss">
 .paper-box {
 	padding: 0 20rpx;
-	.paper-popup {
-		position: fixed;
-		z-index: 200;
-		top: 100rpx;
-		right: 0;
-		width: 55%;
-		background-color: #fff;
-		box-shadow: 1rpx 1rpx 20rpx 2rpx #ccc;
-		font-size: 35rpx;
-		.popup-box {
-			padding: 20rpx;
-			.icon {
-				margin-right: 20rpx;
-				font-weight: bold;
-			}
-		}
-	}
-	.popup-hover {
-		background-color: #eee;
-	}
-	.popup-mask {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: 199;
-	}
+	
 }
 </style>
