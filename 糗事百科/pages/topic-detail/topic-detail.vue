@@ -5,7 +5,7 @@
 		<!-- 话题信息 -->
 		<topic-info :topicInfo="topicInfo"></topic-info>
 		<!-- tab切换 -->
-		<swiper-head @itemClick="itemClick" :tabBars="tabBars" :activeIndex="tabIndex" swiperStyle="border: none;" swiperItem="width: 50%;"></swiper-head>
+		<swiper-head @itemClick="itemClick" :tabBars="tabBars" :tabIndex="tabIndex" swiperStyle="border: none;" swiperItem="width: 50%;"></swiper-head>
 		<!-- 列表 -->
 		<view class="topic-detail-list animated fadeInLeft fast">
 			<block v-for="(item, index) in tabList" :key="index">

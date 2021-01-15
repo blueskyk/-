@@ -3,7 +3,7 @@
 	<view class="uni-tab-bar">
 		<scroll-view scroll-x="true" class="uni-swiper-tab" :style="swiperStyle">
 			<view v-for="(item,index) in tabBars" :key="item.id" class="swiper-tab-list" :style="swiperItem">
-				<text :class="{'active':activeIndex==index}" @tap="itemClick(index)">{{item.name}} {{item.num?item.num:''}}</text>
+				<text :class="{'active':tabIndex==index}" @tap="itemClick(index)">{{item.name}} {{item.num?item.num:''}}</text>
 			</view>
 		</scroll-view>
 	</view>
@@ -19,7 +19,7 @@
 		},
 		props: {
 			tabBars: Array,
-			activeIndex: Number,
+			tabIndex: Number,
 			swiperStyle: {
 				type: String,
 				default: ""

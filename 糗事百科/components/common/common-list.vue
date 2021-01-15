@@ -5,7 +5,7 @@
 			<view class="u-f-ac u-f-jsb user-box">
 				<view class="u-f-ac user-name">
 					{{ item.username }}
-					<view class="icon iconfont  user-age u-f-ac" :class="[item.sex == 0 ? 'icon-nan' : 'icon-nv']">20</view>
+					<tag-sex-age :sex="item.sex":age="item.age"></tag-sex-age>
 				</view>
 				<view v-show="!isguanzhu" class="icon iconfont icon-zengjia follow" @tap="guanzhu">关注</view>
 			</view>
@@ -37,7 +37,11 @@
 </template>
 
 <script>
+ import tagSexAge from "./tag-sex-age.vue"
 export default {
+	components: {
+		tagSexAge
+	},
 	data() {
 		return {
 			isguanzhu: this.item.isguanzhu
@@ -81,15 +85,6 @@ export default {
 			.user-name {
 				color: #999;
 				font-size: 30rpx;
-			}
-			.user-age {
-				background-color: #007aff;
-				color: #fff;
-				font-size: 23rpx;
-				padding: 5rpx 10rpx;
-				border-radius: 20rpx;
-				margin-left: 10rpx;
-				line-height: 24rpx;
 			}
 			.follow {
 				background-color: #eee;

@@ -1,8 +1,8 @@
 <template>
 	<view class="content">
 
-		<swiper-head @itemClick="itemClick" :tabBars="tabBars" :activeIndex="activeIndex"></swiper-head>
-		<swiper class="swiper-box" :style="{height: swiperHeight+'px'}" :current="activeIndex" @change="changeIndex">
+		<swiper-head @itemClick="itemClick" :tabBars="tabBars" :tabIndex="tabIndex"></swiper-head>
+		<swiper class="swiper-box" :style="{height: swiperHeight+'px'}" :current="tabIndex" @change="changeIndex">
 			<swiper-item v-for="(items,index) in tabList" :key="index">
 				<scroll-view scroll-y class="" :style="{height: swiperHeight+'px'}" @scrolltolower="loadMore(index)">
 					<template v-if="items.list.length>0">
@@ -477,7 +477,7 @@
 						list: []
 					}
 				],
-				activeIndex: 0
+				tabIndex: 0
 			}
 		},
 		onLoad() {
@@ -491,11 +491,11 @@
 		methods: {
 			// 修改tabbr选中激活样式
 			itemClick(index) {
-				this.activeIndex = index
+				this.tabIndex = index
 			},
 			// 滑动修改tabbar选项
 			changeIndex(e) {
-				this.activeIndex = e.detail.current
+				this.tabIndex = e.detail.current
 			},
 			// 上拉加载更多
 			loadMore(index) {
