@@ -1,6 +1,6 @@
 <template>
 	<view>
-		我的页面
+		<view class="icon iconfont icon-sousuo"></view>
 	</view>
 </template>
 
