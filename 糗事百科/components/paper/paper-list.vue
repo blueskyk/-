@@ -1,5 +1,5 @@
 <template>
-	<view class="paper-list u-f-ac animated fadeInLeft fast">
+	<view class="paper-list u-f-ac animated fadeInLeft fast" @tap="openDetail">
 		<image :src="item.userPic" mode="widthFix"></image>
 		<view class="user-box">
 			<view class="u-f-ac u-f-jsb user-box">
@@ -25,6 +25,13 @@
 		},
 		components: {
 			uniBadge
+		},
+		methods: {
+			openDetail() {
+				uni.navigateTo({
+					url: "../../pages/user-chat/user-chat"
+				})
+			}
 		}
 	}
 </script>
