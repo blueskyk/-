@@ -6,6 +6,8 @@
 		<view class="uni-comment u-comment">
 			<block v-for="(item, index) in comment.list" :key="index"><comment-list :item="item" :index="index"></comment-list></block>
 		</view>
+		<view style="height: 120rpx;"></view>
+		<user-chat-bottom @submit="submit"></user-chat-bottom>
 	</view>
 </template>
 
@@ -13,10 +15,12 @@
 import detailInfo from '../../components/detail/detail-info.vue';
 import commentList from "../../components/detail/comment-list.vue"
 import time from "../../common/time.js"
+import userChatBottom from "../../components/user-chat/user-chat-bottom.vue"
 export default {
 	components: {
 		detailInfo,
-		commentList
+		commentList,
+		userChatBottom
 	},
 	data() {
 		return {
@@ -92,6 +96,18 @@ export default {
 				arr[i].time = time.gettime.gettime(arr[i].time);
 			}
 			this.comment.list = arr;
+		},
+		submit(data) {
+			let obj = {
+					id: 1,
+					fid: 0,
+					userpic: '../../static/demo/userpic/6.jpg',
+					username: '小猫咪',
+					time: time.gettime.gettime(new Date().getTime()),
+					data: data
+				}
+				this.comment.list.push(obj)
+			console.log(data)
 		}
 	},
 	onLoad(e) {
