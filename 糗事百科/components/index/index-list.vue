@@ -1,5 +1,5 @@
 <template>
-	<view class="index-list animated fadeInLeft fast">
+	<view class="index-list animated fadeInLeft fast" @tap="openDetail">
 		<view class="index-list1">
 			<view>
 				<image :src="item.userPic" mode="widthFix" lazy-load></image>
@@ -97,6 +97,12 @@
 						this.infoNum.infoIndex = 2
 						break;
 				}
+			},
+			// 点击进入详情页
+			openDetail() {
+				uni.navigateTo({
+					url: `../../pages/detail/detail?detailData=${JSON.stringify(this.item)}`
+				});
 			}
 		}
 	}
