@@ -1,5 +1,5 @@
 <template>
-	<view class="index-list animated fadeInLeft fast" @tap="openDetail">
+	<view class="index-list animated fadeInLeft fast">
 		<view class="index-list1">
 			<view>
 				<image :src="item.userPic" mode="widthFix" lazy-load></image>
@@ -9,7 +9,7 @@
 				<view class="icon iconfont icon-zengjia" @tap="guanzhu">关注</view>
 			</view>
 		</view>
-		<view class="index-list2">{{item.title}}</view>
+		<view class="index-list2" @tap="openDetail">{{item.title}}</view>
 		<view class="index-list3">
 			<!-- 图片 -->
 			<image :src="item.titlePic" mode="widthFix" lazy-load></image>

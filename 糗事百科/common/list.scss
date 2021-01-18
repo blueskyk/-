@@ -1,0 +1,85 @@
+.common-list {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 20rpx;
+	.common-list-left {
+		image {
+			width: 90rpx;
+			height: 90rpx;
+			border-radius: 50%;
+		}
+	}
+
+	.common-list-right {
+		flex: 1;
+		margin-left: 15rpx;
+		border-bottom: 1rpx solid #eee;
+		padding-bottom: 10rpx;
+		.user {
+			.user-box {
+				.user-name {
+					color: #999;
+					font-size: 30rpx;
+				}
+				.follow {
+					background-color: #eee;
+					padding: 0 10rpx;
+					font-size: 26rpx;
+				}
+			}
+		}
+		.title {
+			font-size: 32rpx;
+			padding: 12rpx 0;
+		}
+		.bg-img {
+			width: 100%;
+			border-radius: 10rpx;
+		}
+		.info-box {
+			color: #aaa;
+			font-size: 28rpx;
+			.iconfont {
+				margin-left: 10rpx;
+				padding-left: 5rpx;
+				font-size: 28rpx;
+			}
+		}
+		.video-box {
+			flex-direction: column;
+			position: relative;
+			margin-bottom: 10rpx;
+			image {
+				margin-bottom: 20rpx;
+			}
+			.commen-list-play,
+			.commen-list-playinfo {
+				position: absolute;
+				color: #fff;
+			}
+			.commen-list-play {
+				font-size: 100rpx;
+			}
+
+			.commen-list-playinfo {
+				right: 10rpx;
+				bottom: 10rpx;
+				background: rgba(51, 51, 51, 0.73);
+				border-radius: 20rpx;
+				padding: 0 10rpx;
+				font-size: 20rpx;
+			}
+			.common-list-share {
+				width: 100%;
+				background: #eee;
+				padding: 10rpx;
+				border-radius: 10rpx;
+				image {
+					width: 200rpx;
+					height: 150rpx;
+					margin-right: 10rpx;
+				}
+			}
+		}
+	}
+}

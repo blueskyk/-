@@ -2,17 +2,22 @@
 	<view class="common-list u-f animated fadeInLeft fast">
 		<view class="common-list-left"><image :src="item.userpic" mode="widthFix" lazy-load></image></view>
 		<view class="common-list-right">
-			<view class="u-f-ac u-f-jsb user-box">
-				<view class="u-f-ac user-name">
-					{{ item.username }}
-					<tag-sex-age :sex="item.sex":age="item.age"></tag-sex-age>
+			<view class="user">
+				<view class="u-f-ac u-f-jsb user-box">
+					<view class="u-f-ac user-name">
+						{{ item.username }}
+						<tag-sex-age :sex="item.sex":age="item.age"></tag-sex-age>
+					</view>
+					<view v-show="!isguanzhu" class="icon iconfont icon-zengjia follow" @tap="guanzhu">关注</view>
 				</view>
-				<view v-show="!isguanzhu" class="icon iconfont icon-zengjia follow" @tap="guanzhu">关注</view>
+				<view class="common-list-r-time">26天前</view>
 			</view>
 			<view class="title">{{ item.title }}</view>
 			<view class="video-box u-f-ajc">
 				<!-- 图片 -->
-				<image class="bg-img" v-if="item.titlepic" :src="item.titlepic" mode="widthFix" lazy-load></image>
+				<block v-for="(pic,index) in item.morePic" :key="index">
+					<image class="bg-img"  :src="pic" mode="widthFix" lazy-load @tap="imgDetail(index)"></image>
+				</block>
 				<!-- 视频 -->
 				<template v-if="item.video">
 					<view class="commen-list-play icon iconfont icon-bofang"></view>
@@ -37,7 +42,7 @@
 </template>
 
 <script>
- import tagSexAge from "./tag-sex-age.vue"
+ import tagSexAge from "../common/tag-sex-age.vue"
 export default {
 	components: {
 		tagSexAge
@@ -54,15 +59,32 @@ export default {
 			uni.showToast({
 				title:"关注成功"
 			})
+		},
+		// 点击预览图片
+		imgDetail(index) {
+			uni.previewImage({
+				current:index,
+				urls: this.item.morePic
+			})
 		}
 	},
 	props:{
-		item: Object,
-		index: Number
+		item: Object
 	}
 };
 </script>
 
 <style lang="scss" scoped>
-	@import  "../../common/list.scss"
+@import  "../../common/list.scss";
+.common-list {
+	border-bottom: 1rpx solid #eee;
+	.common-list-right {
+		border: none;
+	}
+	.common-list-r-time {
+		color: #aaa;
+		font-size: 25rpx;
+		background-color: #fff;
+	}
+}
 </style>
