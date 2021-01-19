@@ -8,6 +8,31 @@
 		</view>
 		<view style="height: 120rpx;"></view>
 		<user-chat-bottom @submit="submit"></user-chat-bottom>
+		<!-- 分享 -->
+		<!-- <view class="more-share-model" v-show="isShow" @tap="toggle"></view>
+		<view class="more-share" v-show="isShow">
+			<view class="more-share-title u-f-ajc">分享到</view>
+			<scroll-view scroll-x class="more-share-content">
+				<view class="more-share-item" hover-class="btn-tap" @tap="toggle">
+					<view class="icon iconfont icon-weixin u-f-ajc" style="background-color: #11ad9e;"></view>
+					<view class="icon-text">微信好友</view>
+				</view>
+				<view class="more-share-item" hover-class="btn-tap" @tap="toggle">
+					<view class="icon iconfont icon-xinlangweibo u-f-ajc" style="background-color: #504e4a;"></view>
+					<view class="icon-text">朋友圈</view>
+				</view>
+				<view class="more-share-item" hover-class="btn-tap" @tap="toggle">
+					<view class="icon iconfont icon-xinlangweibo u-f-ajc" style="background-color: #ff775a;"></view>
+					<view class="icon-text">新浪微博</view>
+				</view>
+				<view class="more-share-item" hover-class="btn-tap" @tap="toggle">
+					<view class="icon iconfont icon-QQ u-f-ajc" style="background-color: #4782d4;"></view>
+					<view class="icon-text">QQ好友</view>
+				</view>
+			</scroll-view>
+			<view class="more-share-cancel u-f-ajc" hover-class="btn-tap" @tap="toggle">取消</view>
+		</view> -->
+		<share-show :isShow="isShow" @toggle="toggle"></share-show>
 	</view>
 </template>
 
@@ -16,11 +41,13 @@ import detailInfo from '../../components/detail/detail-info.vue';
 import commentList from "../../components/detail/comment-list.vue"
 import time from "../../common/time.js"
 import userChatBottom from "../../components/user-chat/user-chat-bottom.vue"
+import shareShow from "../../components/detail/share-show.vue"
 export default {
 	components: {
 		detailInfo,
 		commentList,
-		userChatBottom
+		userChatBottom,
+		shareShow
 	},
 	data() {
 		return {
@@ -43,7 +70,8 @@ export default {
 				sharenum: 20,
 				commentnum: 30,
 				goodnum: 40
-			}
+			},
+			isShow: false
 		};
 	},
 	methods: {
@@ -108,6 +136,9 @@ export default {
 				}
 				this.comment.list.push(obj)
 			console.log(data)
+		},
+		toggle() {
+			this.isShow = !this.isShow
 		}
 	},
 	onLoad(e) {
@@ -116,13 +147,13 @@ export default {
 	},
 	onNavigationBarButtonTap(e) {
 		if (e.index == 0) {
-			console.log('分享');
+			this.isShow = true
 		}
 	}
 };
 </script>
 
-<style>
+<style lang="scss">
 .u-comment {
 	padding: 0 20upx;
 }
