@@ -15,12 +15,15 @@
 
 /*每个页面公共css */
 /* flex布局 */
-.u-f,.u-f-ac,.u-f-ajc {
+.u-f,
+.u-f-ac,
+.u-f-ajc {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
 }
-.u-f-ac,.u-f-ajc {
+.u-f-ac,
+.u-f-ajc {
 	-webkit-box-align: center;
 	-webkit-align-items: center;
 	        align-items: center;
@@ -48,6 +51,24 @@
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;
 	        flex-direction: column;
+}
+/* 公共按钮组件样式 */
+.user-set-btn {
+	width: 100%;
+	margin: 20rpx 0;
+	background-color: #ffe933 !important;
+	border: none;
+	color: #333 !important;
+}
+/* 无法操作样式 */
+.user-set-btn-disable {
+	background-color: #f4f4f4 !important;
+	color: #929292 !important;
+	border: 1rpx solid #eee !important;
+}
+.common-input {
+	font-size: 30rpx;
+	border-bottom: 1rpx solid #f4f4f4;
 }
 /* 引入动画库 */
 @charset "UTF-8";

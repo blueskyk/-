@@ -11,7 +11,8 @@
     "pages/user-list/user-list",
     "pages/user-chat/user-chat",
     "pages/detail/detail",
-    "pages/user-set/user-set"
+    "pages/user-set/user-set",
+    "pages/change-password/change-password"
   ],
   "subPackages": [],
   "window": {
@@ -52,6 +53,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap16.json"
+  "usingComponents": {}
 }

@@ -65,7 +65,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -79,7 +79,21 @@ var _default =
 {
   props: {
     item: Object,
-    index: Number } };exports.default = _default;
+    index: Number },
+
+  methods: {
+    open: function open() {
+      switch (this.item.clicktype) {
+        case "navigateTo":
+          if (this.item.url) {
+            uni.navigateTo({
+              url: this.item.url });
+
+          }
+          break;}
+
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
