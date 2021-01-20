@@ -2,7 +2,11 @@
   "navigationBarTitleText": "",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
-    "common-list": "/components/common/common-list"
+    "common-list": "/components/common/common-list",
+    "news-nav-bar": "/components/news/news-nav-bar",
+    "load-more": "/components/common/load-more",
+    "news-swiper": "/components/news/news-swiper",
+    "topic-nav": "/components/news/topic-nav",
+    "topic-list": "/components/news/topic-list"
   }
 }

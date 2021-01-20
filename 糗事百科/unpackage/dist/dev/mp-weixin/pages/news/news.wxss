@@ -24,31 +24,30 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.nav-left .iconfont,
-.nav-right .iconfont {
-  font-size: 40rpx;
+.search-input {
+  padding: 20rpx;
 }
-.nav-left {
-  margin-left: 16rpx;
+.search-input .uni-input {
+  background-color: #f4f4f4;
+  border-radius: 10rpx;
 }
-.nav-left .iconfont {
-  color: #ff9619;
+.search-input .center-input {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  font-size: 27rpx;
 }
-.nav-center {
-  width: 100%;
+.topic-new {
+  padding: 20rpx;
 }
-.nav-center .center-item {
-  font-size: 35rpx;
-  padding: 0 15rpx;
-  color: #ccc;
-}
-.nav-center .center-item.active text {
-  color: #000;
-  padding-bottom: 3rpx;
-  border-bottom: 10rpx solid pink;
-}
-.nav-right {
-  width: 100%;
-  margin-left: 40rpx;
+.topic-new .new-title {
+  font-size: 32rpx;
+  margin-bottom: 5rpx;
 }
 

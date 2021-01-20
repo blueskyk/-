@@ -63,7 +63,9 @@ export default {
 	methods: {},
 	onNavigationBarButtonTap(e) {
 		if (e.index == 0) {
-			console.log('更多');
+			uni.navigateTo({
+				url: '../user-set/user-set'
+			});
 		}
 	}
 };

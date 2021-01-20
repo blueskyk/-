@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var indexList = function indexList() {__webpack_require__.e(/*! require.ensure | components/index/index-list */ "components/index/index-list").then((function () {return resolve(__webpack_require__(/*! ../../components/index/index-list.vue */ 51));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var swiperHead = function swiperHead() {__webpack_require__.e(/*! require.ensure | components/index/swiper-head */ "components/index/swiper-head").then((function () {return resolve(__webpack_require__(/*! ../../components/index/swiper-head.vue */ 58));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadMore = function loadMore() {__webpack_require__.e(/*! require.ensure | components/common/load-more */ "components/common/load-more").then((function () {return resolve(__webpack_require__(/*! ../../components/common/load-more.vue */ 65));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var noThing = function noThing() {__webpack_require__.e(/*! require.ensure | components/common/no-thing */ "components/common/no-thing").then((function () {return resolve(__webpack_require__(/*! ../../components/common/no-thing.vue */ 72));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var indexList = function indexList() {__webpack_require__.e(/*! require.ensure | components/index/index-list */ "components/index/index-list").then((function () {return resolve(__webpack_require__(/*! ../../components/index/index-list.vue */ 102));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var swiperHead = function swiperHead() {__webpack_require__.e(/*! require.ensure | components/index/swiper-head */ "components/index/swiper-head").then((function () {return resolve(__webpack_require__(/*! ../../components/index/swiper-head.vue */ 109));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadMore = function loadMore() {__webpack_require__.e(/*! require.ensure | components/common/load-more */ "components/common/load-more").then((function () {return resolve(__webpack_require__(/*! ../../components/common/load-more.vue */ 116));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var noThing = function noThing() {__webpack_require__.e(/*! require.ensure | components/common/no-thing */ "components/common/no-thing").then((function () {return resolve(__webpack_require__(/*! ../../components/common/no-thing.vue */ 123));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -612,7 +612,7 @@ __webpack_require__.r(__webpack_exports__);
         list: [] }],
 
 
-      activeIndex: 0 };
+      tabIndex: 0 };
 
   },
   onLoad: function onLoad() {var _this = this;
@@ -626,11 +626,11 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     // 修改tabbr选中激活样式
     itemClick: function itemClick(index) {
-      this.activeIndex = index;
+      this.tabIndex = index;
     },
     // 滑动修改tabbar选项
     changeIndex: function changeIndex(e) {
-      this.activeIndex = e.detail.current;
+      this.tabIndex = e.detail.current;
     },
     // 上拉加载更多
     loadMore: function loadMore(index) {var _this2 = this;

@@ -266,6 +266,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/user-set/user-set",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "设置",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

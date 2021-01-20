@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "topic-info": "/components/topic/topic-info",
+    "swiper-head": "/components/index/swiper-head",
+    "common-list": "/components/common/common-list",
+    "load-more": "/components/common/load-more"
+  }
+}

@@ -106,29 +106,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
-try {
-  components = {
-    uniNavBar: function() {
-      return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 79))
-    }
-  }
-} catch (e) {
-  if (
-    e.message.indexOf("Cannot find module") !== -1 &&
-    e.message.indexOf(".vue") !== -1
-  ) {
-    console.error(e.message)
-    console.error("1. 排查组件名称拼写是否正确")
-    console.error(
-      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
-    )
-    console.error(
-      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
-    )
-  } else {
-    throw e
-  }
-}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -164,7 +141,21 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniNavBar = function uniNavBar() {__webpack_require__.e(/*! require.ensure | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then((function () {return resolve(__webpack_require__(/*! ../../components/uni-nav-bar/uni-nav-bar.vue */ 79));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var commonList = function commonList() {__webpack_require__.e(/*! require.ensure | components/common/common-list */ "components/common/common-list").then((function () {return resolve(__webpack_require__(/*! ../../components/common/common-list.vue */ 86));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var commonList = function commonList() {__webpack_require__.e(/*! require.ensure | components/common/common-list */ "components/common/common-list").then((function () {return resolve(__webpack_require__(/*! ../../components/common/common-list.vue */ 130));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var newsNavBar = function newsNavBar() {__webpack_require__.e(/*! require.ensure | components/news/news-nav-bar */ "components/news/news-nav-bar").then((function () {return resolve(__webpack_require__(/*! ../../components/news/news-nav-bar.vue */ 137));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadMore = function loadMore() {__webpack_require__.e(/*! require.ensure | components/common/load-more */ "components/common/load-more").then((function () {return resolve(__webpack_require__(/*! ../../components/common/load-more.vue */ 116));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var newsSwiper = function newsSwiper() {__webpack_require__.e(/*! require.ensure | components/news/news-swiper */ "components/news/news-swiper").then((function () {return resolve(__webpack_require__(/*! ../../components/news/news-swiper.vue */ 144));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var topicNav = function topicNav() {__webpack_require__.e(/*! require.ensure | components/news/topic-nav */ "components/news/topic-nav").then((function () {return resolve(__webpack_require__(/*! ../../components/news/topic-nav.vue */ 151));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var topicList = function topicList() {__webpack_require__.e(/*! require.ensure | components/news/topic-list */ "components/news/topic-list").then((function () {return resolve(__webpack_require__(/*! ../../components/news/topic-list.vue */ 158));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -195,98 +186,207 @@ __webpack_require__.r(__webpack_exports__);
 
 {
   components: {
-    uniNavBar: uniNavBar,
-    commonList: commonList },
+    commonList: commonList,
+    newsNavBar: newsNavBar,
+    loadMore: loadMore,
+    newsSwiper: newsSwiper,
+    topicNav: topicNav,
+    topicList: topicList },
 
   data: function data() {
     return {
+      swiperHeight: 500,
       tabIndex: 0,
       tabBars: [{ name: '关注', id: 'guanzhi' }, { name: '话题', id: 'huati' }],
-      list: [
-      // 文字
-      {
-        userpic: '../../static/demo/userpic/14.jpg',
-        username: '昵称',
-        sex: 0, //0 男 1 女
-        age: 20,
-        isguanzhu: false,
-        title: '我是标题',
-        titlepic: '',
-        video: false,
-        share: false,
-        path: '江苏 徐州',
-        sharenum: 20,
-        commentnum: 30,
-        goodnum: 40 },
-
-      // 图文
-      {
-        userpic: '../../static/demo/userpic/14.jpg',
-        username: '昵称',
-        sex: 0, //0 男 1 女
-        age: 20,
-        isguanzhu: false,
-        title: '我是标题',
-        titlepic: '../../static/demo/datapic/13.jpg',
-        video: false,
-        share: false,
-        path: '江苏 徐州',
-        sharenum: 20,
-        commentnum: 30,
-        goodnum: 40 },
-
-      // 视频
-      {
-        userpic: '../../static/demo/userpic/14.jpg',
-        username: '昵称',
-        sex: 0, //0 男 1 女
-        age: 20,
-        isguanzhu: false,
-        title: '我是标题',
-        titlepic: '../../static/demo/datapic/13.jpg',
-        video: {
-          looknum: '20w',
-          time: '2:47' },
-
-        share: false,
-        path: '江苏 徐州',
-        sharenum: 20,
-        commentnum: 30,
-        goodnum: 40 },
-
-      // 分享
-      {
-        userpic: '../../static/demo/userpic/14.jpg',
-        username: '昵称',
-        sex: 0, //0 男 1 女
-        age: 20,
-        isguanzhu: false,
-        title: '我是标题',
-        titlepic: '',
-        video: false,
-        share: {
+      guanzhu: {
+        loadText: '上拉加载更多',
+        list: [
+        // 文字
+        {
+          userpic: '../../static/demo/userpic/14.jpg',
+          username: '昵称',
+          sex: 0, //0 男 1 女
+          age: 20,
+          isguanzhu: false,
           title: '我是标题',
-          titlepic: '../../static/demo/datapic/14.jpg' },
+          titlepic: '',
+          video: false,
+          share: false,
+          path: '江苏 徐州',
+          sharenum: 20,
+          commentnum: 30,
+          goodnum: 40 },
 
-        path: '江苏 徐州',
-        sharenum: 20,
-        commentnum: 30,
-        goodnum: 40 }] };
+        // 图文
+        {
+          userpic: '../../static/demo/userpic/14.jpg',
+          username: '昵称',
+          sex: 0, //0 男 1 女
+          age: 20,
+          isguanzhu: false,
+          title: '我是标题',
+          titlepic: '../../static/demo/datapic/13.jpg',
+          video: false,
+          share: false,
+          path: '江苏 徐州',
+          sharenum: 20,
+          commentnum: 30,
+          goodnum: 40 },
+
+        // 视频
+        {
+          userpic: '../../static/demo/userpic/14.jpg',
+          username: '昵称',
+          sex: 0, //0 男 1 女
+          age: 20,
+          isguanzhu: false,
+          title: '我是标题',
+          titlepic: '../../static/demo/datapic/13.jpg',
+          video: {
+            looknum: '20w',
+            time: '2:47' },
+
+          share: false,
+          path: '江苏 徐州',
+          sharenum: 20,
+          commentnum: 30,
+          goodnum: 40 },
+
+        // 分享
+        {
+          userpic: '../../static/demo/userpic/14.jpg',
+          username: '昵称',
+          sex: 0, //0 男 1 女
+          age: 20,
+          isguanzhu: false,
+          title: '我是标题',
+          titlepic: '',
+          video: false,
+          share: {
+            title: '我是标题',
+            titlepic: '../../static/demo/datapic/14.jpg' },
+
+          path: '江苏 徐州',
+          sharenum: 20,
+          commentnum: 30,
+          goodnum: 40 }] },
+
+
+
+      // 轮播图数组
+      topic: {
+        swiper: [
+        { imgsrc: '../../static/demo/banner1.jpg', id: 1 },
+        { imgsrc: '../../static/demo/banner2.jpg', id: 2 },
+        { imgsrc: '../../static/demo/banner3.jpg', id: 3 }],
+        nav: [
+        { name: "最新" },
+        { name: "游戏" },
+        { name: "打卡" },
+        { name: "情感" },
+        { name: "故事" },
+        { name: "喜爱" }],
+
+        list: [
+        {
+          titlePic: "../../static/demo/topicpic/13.jpeg",
+          title: "话题名称",
+          desc: "我是话题描述",
+          totalNum: 50,
+          todayNmu: 10 },
+
+        {
+          titlePic: "../../static/demo/topicpic/13.jpeg",
+          title: "话题名称",
+          desc: "我是话题描述",
+          totalNum: 50,
+          todayNmu: 10 },
+
+        {
+          titlePic: "../../static/demo/topicpic/13.jpeg",
+          title: "话题名称",
+          desc: "我是话题描述",
+          totalNum: 50,
+          todayNmu: 10 },
+
+        {
+          titlePic: "../../static/demo/topicpic/13.jpeg",
+          title: "话题名称",
+          desc: "我是话题描述",
+          totalNum: 50,
+          todayNmu: 10 },
+
+        {
+          titlePic: "../../static/demo/topicpic/13.jpeg",
+          title: "话题名称",
+          desc: "我是话题描述",
+          totalNum: 50,
+          todayNmu: 10 },
+
+        {
+          titlePic: "../../static/demo/topicpic/13.jpeg",
+          title: "话题名称",
+          desc: "我是话题描述",
+          totalNum: 50,
+          todayNmu: 10 },
+
+        {
+          titlePic: "../../static/demo/topicpic/13.jpeg",
+          title: "话题名称",
+          desc: "我是话题描述",
+          totalNum: 50,
+          todayNmu: 10 }] } };
+
 
 
 
   },
   methods: {
-    // 跳转到发布页
-    openAdd: function openAdd() {
-      uni.navigateTo({
-        url: '/pages/add-input/add-input' });
-
-    },
     // tab栏点击切换
     changeTab: function changeTab(index) {
       this.tabIndex = index;
-    } } };exports.default = _default;
+    },
+    // 滑动修改tabbar选项
+    changeIndex: function changeIndex(e) {
+      this.tabIndex = e.detail.current;
+    },
+    // 上拉加载更多
+    loadMore: function loadMore() {var _this = this;
+      if (this.guanzhu.loadText != '上拉加载更多') {
+        return;
+      }
+      // 修改状态
+      this.guanzhu.loadText = '加载中...',
+      // 获取数据
+      setTimeout(function () {
+        var obj = {
+          userpic: '../../static/demo/userpic/14.jpg',
+          username: '昵称',
+          sex: 0, //0 男 1 女
+          age: 20,
+          isguanzhu: false,
+          title: '我是标题',
+          titlepic: '../../static/demo/datapic/13.jpg',
+          video: false,
+          share: false,
+          path: '江苏 徐州',
+          sharenum: 20,
+          commentnum: 30,
+          goodnum: 40 };
+
+        _this.guanzhu.list.push(obj);
+        _this.guanzhu.loadText = '上拉加载更多';
+      }, 1000);
+    } },
+
+  onLoad: function onLoad() {var _this2 = this;
+    uni.getSystemInfo({
+      success: function success(res) {
+        var height = res.windowHeight - 50;
+        _this2.swiperHeight = height;
+      } });
+
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

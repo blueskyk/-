@@ -1,7 +1,7 @@
 <template>
 	<view class="home-list-item u-f-ac u-f-jsb" hover-class="home-list-hover">
 		<view class="u-f-ac home-list-item-l">
-			<view class="icon iconfont" :class="[`icon-${item.icon}`]"></view>
+			<view v-if="item.icon" class="icon iconfont" :class="[`icon-${item.icon}`]"></view>
 			{{ item.name }}
 		</view>
 		<view class=" home-list-item-r icon iconfont icon-jinru"></view>
