@@ -1,8 +1,8 @@
 <template>
-	<view class="change-password">
-		<input type="password" class="uni-input common-input" placeholder="输入旧密码" v-model="oldPassWord" />
-		<input type="password" class="uni-input common-input" placeholder="输入新密码" v-model="newPassWord" />
-		<input type="password" class="uni-input common-input" placeholder="输入确认密码" v-model="rePassWord" />
+	<view class="body">
+		<input password type="text" class="uni-input common-input" placeholder="输入旧密码" v-model="oldPassWord" />
+		<input password type="text" class="uni-input common-input" placeholder="输入新密码" v-model="newPassWord" />
+		<input password type="text" class="uni-input common-input" placeholder="输入确认密码" v-model="rePassWord" />
 		<button type="default" class="user-set-btn" :loading="loading" :class="{ 'user-set-btn-disable': disabled }" :disabled="disabled" @tap="submit">完成</button>
 	</view>
 </template>
@@ -99,7 +99,4 @@ export default {
 </script>
 
 <style lang="scss">
-.change-password {
-	padding: 0 20rpx;
-}
 </style>

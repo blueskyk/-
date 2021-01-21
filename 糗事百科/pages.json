@@ -279,8 +279,23 @@
             "path" : "pages/change-password/change-password",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "修改密码",
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"scrollIndicator":"none"
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/bind-email/bind-email",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "绑定邮箱",
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"scrollIndicator":"none"
+				}
             }
             
         }

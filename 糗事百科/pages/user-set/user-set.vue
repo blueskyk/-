@@ -19,7 +19,7 @@
 			return {
 				list: [
 					{icon: "",name: "账号与安全",clicktype:"navigateTo",url: "../../pages/change-password/change-password"},
-					{icon: "",name: "绑定邮箱",clicktype:"",url: ""},
+					{icon: "",name: "绑定邮箱",clicktype:"navigateTo",url: "../../pages/bind-email/bind-email"},
 					{icon: "",name: "资料编辑",clicktype:"",url: ""},
 					{icon: "",name: "小纸条",clicktype:"",url: ""},
 					{icon: "",name: "清除缓存",clicktype:"",url: ""},

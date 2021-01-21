@@ -30,6 +30,10 @@
 	flex-direction: column;
 }
 
+.body {
+	padding: 0 20rpx;
+}
+
 /* 公共按钮组件样式 */
 .user-set-btn {
 	width: 100%;

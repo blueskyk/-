@@ -9,45 +9,45 @@
 </template>
 
 <script>
-	export default {
-		props: {
-			item:Object,
-			index: Number
-		},
-		methods: {
-			open() {
-				switch (this.item.clicktype){
-					case "navigateTo":
-					if(this.item.url) {
+export default {
+	props: {
+		item: Object,
+		index: Number
+	},
+	methods: {
+		open() {
+			switch (this.item.clicktype) {
+				case 'navigateTo':
+					if (this.item.url) {
 						uni.navigateTo({
 							url: this.item.url
-						})
+						});
 					}
-						break;
-				}
+					break;
 			}
 		}
 	}
+};
 </script>
 
 <style lang="scss" scoped>
-	.home-list {
-		.home-list-item {
-			padding: 20rpx;
-			border-top: 1rpx solid #f4f4f4;
-			border-bottom: 1rpx solid #f4f4f4;
-			.home-list-item-l {
-				color: #333;
-				.icon {
-					margin-right: 10rpx;
-				}
-			}
-			.home-list-item-r {
-				color: #ccc;
+.home-list {
+	.home-list-item {
+		padding: 20rpx;
+		border-top: 1rpx solid #f4f4f4;
+		border-bottom: 1rpx solid #f4f4f4;
+		.home-list-item-l {
+			color: #333;
+			.icon {
+				margin-right: 10rpx;
 			}
 		}
+		.home-list-item-r {
+			color: #ccc;
+		}
 	}
-	.home-list-hover {
-		background-color: #eee;
-	}
+}
+.home-list-hover {
+	background-color: #eee;
+}
 </style>
