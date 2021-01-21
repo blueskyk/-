@@ -308,6 +308,19 @@
             }
             
         }
+        ,{
+            "path" : "pages/user-help/user-help",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "意见反馈",
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"scrollIndicator":"none",
+					"bounce":"none"
+				}
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

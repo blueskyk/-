@@ -23,12 +23,17 @@
 					{icon: "",name: "资料编辑",clicktype:"navigateTo",url: "../../pages/change-userinfo/change-userinfo"},
 					{icon: "",name: "小纸条",clicktype:"",url: ""},
 					{icon: "",name: "清除缓存",clicktype:"",url: ""},
-					{icon: "",name: "意见反馈",clicktype:"",url: ""},
+					{icon: "",name: "意见反馈",clicktype:"navigateTo",url: "../../pages/user-help/user-help"},
 					{icon: "",name: "关于app",clicktype:"",url: ""}
 				]
 			}
 		},
 		methods: {
+			open() {
+				uni.navigateTo({
+					url: ''
+				});
+			}
 		}
 	}
 </script>

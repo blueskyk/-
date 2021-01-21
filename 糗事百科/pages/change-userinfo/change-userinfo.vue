@@ -46,20 +46,25 @@
 		</view>
 		<view class="change-info-list u-f-ac u-f-jsb">
 			<view class="list-left">家乡</view>
-			<view class="u-f-ac list-right">
-				<view>江苏徐州</view>
+			<view class="u-f-ac list-right" @tap="showMulLinkageThreePicker">
+				<view>{{ pickerText }}</view>
 				<view class="icon iconfont icon-bianji1"></view>
 			</view>
 		</view>
 		<button type="default" class="user-set-btn" @tap="submit">完成</button>
+		<mpvue-city-picker themeColor="#007AFF" ref="mpvueCityPicker" :pickerValueDefault="cityPickerValueDefault" @onConfirm="onConfirm"></mpvue-city-picker>
 	</view>
 </template>
 
 <script>
 let sex = ['不限', '男', '女'];
 let marry = ['保密', '未婚', '已婚'];
-let job = ['开发', '运维', '产品'];
+let job = ['开发', '运维', '产品','扫地僧'];
+import mpvueCityPicker from '../../components/mpvue-citypicker/mpvueCityPicker.vue';
 export default {
+	components: {
+		mpvueCityPicker
+	},
 	data() {
 		return {
 			userPic: '../../static/demo/userpic/6.jpg',
@@ -67,8 +72,21 @@ export default {
 			sex: '不限',
 			job: 'IT',
 			marry: '未婚',
-			birthday: '2000-11-07'
+			birthday: '2000-11-07',
+			cityPickerValueDefault: [0, 0, 1],
+			pickerText: '江苏省-徐州市-泉山区'
 		};
+	},
+	onBackPress() {
+		if (this.$refs.mpvueCityPicker.showPicker) {
+			this.$refs.mpvueCityPicker.pickerCancel();
+			return true;
+		}
+	},
+	onUnload() {
+		if (this.$refs.mpvueCityPicker.showPicker) {
+			this.$refs.mpvueCityPicker.pickerCancel();
+		}
 	},
 	methods: {
 		submit() {},
@@ -130,7 +148,14 @@ export default {
 		},
 		// 修改生日
 		bindDateChange(e) {
-			this.birthday = e.target.value
+			this.birthday = e.target.value;
+		},
+		onConfirm(e) {
+			this.pickerText = e.label;
+		},
+		// 三级联动
+		showMulLinkageThreePicker() {
+			this.$refs.mpvueCityPicker.show();
 		}
 	},
 	computed: {
