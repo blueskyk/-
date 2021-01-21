@@ -299,6 +299,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/change-userinfo/change-userinfo",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

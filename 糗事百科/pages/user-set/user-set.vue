@@ -20,7 +20,7 @@
 				list: [
 					{icon: "",name: "账号与安全",clicktype:"navigateTo",url: "../../pages/change-password/change-password"},
 					{icon: "",name: "绑定邮箱",clicktype:"navigateTo",url: "../../pages/bind-email/bind-email"},
-					{icon: "",name: "资料编辑",clicktype:"",url: ""},
+					{icon: "",name: "资料编辑",clicktype:"navigateTo",url: "../../pages/change-userinfo/change-userinfo"},
 					{icon: "",name: "小纸条",clicktype:"",url: ""},
 					{icon: "",name: "清除缓存",clicktype:"",url: ""},
 					{icon: "",name: "意见反馈",clicktype:"",url: ""},
@@ -29,7 +29,6 @@
 			}
 		},
 		methods: {
-			
 		}
 	}
 </script>
