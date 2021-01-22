@@ -321,6 +321,19 @@
             }
             
         }
+        ,{
+            "path" : "pages/about/about",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "关于app",
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"scrollIndicator":"none",
+					"bounce":"none"
+				}
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
