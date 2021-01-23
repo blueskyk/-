@@ -6,7 +6,7 @@
 			<!-- 第三方 -->
 			<other-login></other-login>
 			<!-- 账号密码登录 -->
-			<view class="u-f-ajc">
+			<view class="u-f-ajc" @tap="openLogin">
 				<view class="u-f-ajc">
 					账号密码登录
 					<view class="icon iconfont icon-jinru u-f-ac"></view>
@@ -64,7 +64,14 @@ export default {
 			]
 		};
 	},
-	methods: {},
+	methods: {
+		// 跳转到登录页
+		openLogin() {
+			uni.navigateTo({
+				url: '../login/login'
+			});
+		}
+	},
 	onNavigationBarButtonTap(e) {
 		if (e.index == 0) {
 			uni.navigateTo({

@@ -334,6 +334,20 @@
             }
             
         }
+        ,{
+            "path" : "pages/login/login",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "登录页",
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"scrollIndicator":"none",
+					"bounce":"none",
+					"titleNView":false
+				}
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
