@@ -9,9 +9,9 @@
 		<view class="body">
 			<!-- 密码登录 -->
 			<template v-if="status">
-				<input type="text" class="uni-input common-input" placeholder="昵称/手机号/邮箱" />
+				<input type="text" class="uni-input common-input" placeholder="昵称/手机号/邮箱" v-model="userName" />
 				<view class="login-input-box">
-					<input type="text" class="uni-input common-input" placeholder="请输入密码" />
+					<input type="text" class="uni-input common-input" placeholder="请输入密码" v-model="password" />
 					<view class="forget u-f-ajc">忘记密码</view>
 				</view>
 			</template>
@@ -20,10 +20,10 @@
 			<template v-else>
 				<view class="login-input-box">
 					<view class="phone u-f-ajc">+86</view>
-					<input type="text" class="uni-input common-input phone-input" placeholder="输入手机号码" />
+					<input type="text" class="uni-input common-input phone-input" placeholder="输入手机号码" v-model="phone" />
 				</view>
 				<view class="login-input-box">
-					<input type="text" class="uni-input common-input" placeholder="请输入验证码" />
+					<input type="text" class="uni-input common-input" placeholder="请输入验证码" v-model="checkNum" />
 					<view class="forget u-f-ajc yanzhengma"><view class="u-f-ajc yanzhengma-text">获取验证码</view></view>
 				</view>
 			</template>
@@ -59,8 +59,26 @@ export default {
 		return {
 			disabled: true,
 			loading: false,
-			status: true //true为密码登录 false为验证码登录
+			status: true ,//true为密码登录 false为验证码登录,
+			userName: "",
+			password: "",
+			phone:"",
+			checkNum: ""
 		};
+	},
+	watch: {
+		userName(val) {
+			this.onBtnChange()
+		},
+		password(val) {
+			this.onBtnChange()
+		},
+		phone(val) {
+			this.onBtnChange()
+		},
+		checkNum(val) {
+			this.onBtnChange()
+		}
 	},
 	methods: {
 		// 返回上一步
@@ -69,9 +87,25 @@ export default {
 		},
 		// 提交登录
 		submit() {},
+		// 初始化表单
+		initInput() {
+			this.userName = "",
+			this.password = "",
+			this.phone = "",
+			this.checkNum = ""
+		},
 		// 修改登录状态
 		changeStatus() {
+			this.initInput()
 			this.status = !this.status
+		},
+		// 监听输入框的变化
+		onBtnChange() {
+			if((this.userName && this.password) || (this.phone && this.checkNum)) {
+				this.disabled = false
+				return
+			}
+			this.disabled = true
 		}
 	}
 };
