@@ -90,7 +90,21 @@ export default {
 			});
 		},
 		// 提交登录
-		submit() {},
+		submit() {
+			// 账号密码登录
+			if(!this.status) {
+				return
+			}
+			// 验证码登录
+			if(!this.isPhone()) {
+				uni.showToast({
+					title: '请输入正确的手机号码',
+					icon: "none"
+				});
+				return
+			}
+			
+		},
 		// 初始化表单
 		initInput() {
 			(this.userName = ''), (this.password = ''), (this.phone = ''), (this.checkNum = '');
@@ -108,6 +122,11 @@ export default {
 			}
 			this.disabled = true;
 		},
+		// 验证是否是手机号码
+		isPhone() {
+			let mPattern = /^1[34578]\d{9}$/;
+			return mPattern.test(this.phone)
+		},
 		getCheckNum() {
 			if(this.codeNum > 0) {
 				uni.showToast({
@@ -116,6 +135,13 @@ export default {
 				});
 				return
 			} 
+			if(!this.isPhone()) {
+				uni.showToast({
+					title: '请输入正确的手机号码',
+					icon: "none"
+				});
+				return
+			}
 			this.codeNum = 10
 			let time = setInterval(() => {
 				this.codeNum--
