@@ -15,7 +15,7 @@
 					<view class="forget u-f-ajc">忘记密码</view>
 				</view>
 			</template>
-			
+
 			<!-- 验证码登录 -->
 			<template v-else>
 				<view class="login-input-box">
@@ -24,16 +24,17 @@
 				</view>
 				<view class="login-input-box">
 					<input type="text" class="uni-input common-input" placeholder="请输入验证码" v-model="checkNum" />
-					<view class="forget u-f-ajc yanzhengma"><view class="u-f-ajc yanzhengma-text">获取验证码</view></view>
+					<view class="forget u-f-ajc yanzhengma" @tap="getCheckNum">
+						<view class="u-f-ajc yanzhengma-text">{{ !codeNum ? '获取验证码' : codeNum + 's' }}</view>
+					</view>
 				</view>
 			</template>
-			
-			
+
 			<button type="default" class="user-set-btn" :loading="loading" :class="{ 'user-set-btn-disable': disabled }" :disabled="disabled" @tap="submit">完成</button>
 		</view>
 		<!-- 登录状态切换 -->
 		<view class="u-f-ajc login-status" style="padding: 20rpx 0;" @tap="changeStatus">
-			{{status?'账号密码登录':'验证码'}}登录
+			{{ status ? '账号密码登录' : '验证码' }}登录
 			<view class="icon iconfont icon-jinru"></view>
 		</view>
 		<!-- 第三方登录 -->
@@ -42,14 +43,15 @@
 		<other-login></other-login>
 		<!-- 协议 -->
 		<view class="u-f-ajc" style="color: #aaa; padding: 20rpx 0;">
-			注册即代表您同意<view style="color: #007AFF;">《app用户协议》</view>
+			注册即代表您同意
+			<view style="color: #007AFF;">《app用户协议》</view>
 		</view>
 	</view>
 </template>
 
 <script>
 import uniStatusBar from '../../components/uni-status-bar/uni-status-bar.vue';
-import otherLogin from "../../components/home/other-login.vue"
+import otherLogin from '../../components/home/other-login.vue';
 export default {
 	components: {
 		uniStatusBar,
@@ -59,53 +61,69 @@ export default {
 		return {
 			disabled: true,
 			loading: false,
-			status: true ,//true为密码登录 false为验证码登录,
-			userName: "",
-			password: "",
-			phone:"",
-			checkNum: ""
+			status: true, //true为密码登录 false为验证码登录,
+			userName: '',
+			password: '',
+			phone: '',
+			codeNum: 0
 		};
 	},
 	watch: {
 		userName(val) {
-			this.onBtnChange()
+			this.onBtnChange();
 		},
 		password(val) {
-			this.onBtnChange()
+			this.onBtnChange();
 		},
 		phone(val) {
-			this.onBtnChange()
+			this.onBtnChange();
 		},
 		checkNum(val) {
-			this.onBtnChange()
+			this.onBtnChange();
 		}
 	},
 	methods: {
 		// 返回上一步
 		back() {
-			console.log('返回上一步');
+			uni.navigateBack({
+				delta: 1
+			});
 		},
 		// 提交登录
 		submit() {},
 		// 初始化表单
 		initInput() {
-			this.userName = "",
-			this.password = "",
-			this.phone = "",
-			this.checkNum = ""
+			(this.userName = ''), (this.password = ''), (this.phone = ''), (this.checkNum = '');
 		},
 		// 修改登录状态
 		changeStatus() {
-			this.initInput()
-			this.status = !this.status
+			this.initInput();
+			this.status = !this.status;
 		},
 		// 监听输入框的变化
 		onBtnChange() {
-			if((this.userName && this.password) || (this.phone && this.checkNum)) {
-				this.disabled = false
-				return
+			if ((this.userName && this.password) || (this.phone && this.checkNum)) {
+				this.disabled = false;
+				return;
 			}
-			this.disabled = true
+			this.disabled = true;
+		},
+		getCheckNum() {
+			if(this.codeNum > 0) {
+				uni.showToast({
+					title: '不能重复获取验证码',
+					icon: "none"
+				});
+				return
+			} 
+			this.codeNum = 10
+			let time = setInterval(() => {
+				this.codeNum--
+				if(this.codeNum < 1) {
+					clearInterval(time)
+					this.codeNum = 0
+				}
+			},1000)
 		}
 	}
 };
@@ -126,7 +144,8 @@ export default {
 }
 .other-login-title {
 	position: relative;
-	&::before,&::after{
+	&::before,
+	&::after {
 		content: '';
 		position: absolute;
 		top: 50%;
@@ -176,6 +195,7 @@ export default {
 			border-radius: 10rpx;
 			font-size: 25rpx;
 			padding: 10rpx;
+			width: 150rpx;
 		}
 	}
 }
