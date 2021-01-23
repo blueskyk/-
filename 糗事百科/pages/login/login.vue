@@ -7,31 +7,33 @@
 		<image class="login-head" src="../../static/common/loginhead.png" mode="widthFix" lazy-load></image>
 		<!-- 登录框 -->
 		<view class="body">
-			<!-- <input type="text" class="uni-input common-input" placeholder="昵称/手机号/邮箱" />
-			<view class="login-input-box">
-				<input type="text" class="uni-input common-input" placeholder="请输入密码" />
-				<view class="forget u-f-ajc">忘记密码</view>
-			</view> -->
-			<view class="login-input-box">
-				<view class="phone u-f-ajc">+86</view>
-				<input type="text" class="uni-input common-input phone-input" placeholder="输入手机号码" />
-			</view>
-			<view class="login-input-box">
-				<input type="text" class="uni-input common-input" placeholder="请输入验证码" />
-				<view class="forget u-f-ajc yanzhengma"><view class="u-f-ajc yanzhengma-text">获取验证码</view></view>
-			</view>
+			<!-- 密码登录 -->
+			<template v-if="status">
+				<input type="text" class="uni-input common-input" placeholder="昵称/手机号/邮箱" />
+				<view class="login-input-box">
+					<input type="text" class="uni-input common-input" placeholder="请输入密码" />
+					<view class="forget u-f-ajc">忘记密码</view>
+				</view>
+			</template>
 			
-			<!-- <input type="text" class="uni-input common-input" placeholder="昵称/手机号/邮箱" />
-			<view class="login-input-box">
-				<input type="text" class="uni-input common-input" placeholder="请输入密码" />
-				<view class="forget u-f-ajc">忘记密码</view>
-			</view> -->
+			<!-- 验证码登录 -->
+			<template v-else>
+				<view class="login-input-box">
+					<view class="phone u-f-ajc">+86</view>
+					<input type="text" class="uni-input common-input phone-input" placeholder="输入手机号码" />
+				</view>
+				<view class="login-input-box">
+					<input type="text" class="uni-input common-input" placeholder="请输入验证码" />
+					<view class="forget u-f-ajc yanzhengma"><view class="u-f-ajc yanzhengma-text">获取验证码</view></view>
+				</view>
+			</template>
+			
 			
 			<button type="default" class="user-set-btn" :loading="loading" :class="{ 'user-set-btn-disable': disabled }" :disabled="disabled" @tap="submit">完成</button>
 		</view>
 		<!-- 登录状态切换 -->
-		<view class="u-f-ajc login-status" style="padding: 20rpx 0;">
-			验证码登录
+		<view class="u-f-ajc login-status" style="padding: 20rpx 0;" @tap="changeStatus">
+			{{status?'账号密码登录':'验证码'}}登录
 			<view class="icon iconfont icon-jinru"></view>
 		</view>
 		<!-- 第三方登录 -->
@@ -56,7 +58,8 @@ export default {
 	data() {
 		return {
 			disabled: true,
-			loading: false
+			loading: false,
+			status: true //true为密码登录 false为验证码登录
 		};
 	},
 	methods: {
@@ -65,7 +68,11 @@ export default {
 			console.log('返回上一步');
 		},
 		// 提交登录
-		submit() {}
+		submit() {},
+		// 修改登录状态
+		changeStatus() {
+			this.status = !this.status
+		}
 	}
 };
 </script>
