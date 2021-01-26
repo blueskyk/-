@@ -15,7 +15,7 @@
 				<template v-if="tabIndex==0">
 					<user-space-user-info :userInfo="userInfo"></user-space-user-info>
 				</template>
-				<template v-if="tabIndex == index">
+				<template v-else-if="tabIndex == index">
 					<!-- 列表 -->
 					<block v-for="(list, listIndex) in item.list" :key="listIndex"><common-list :item="list" :index="listIndex"></common-list></block>
 					<!-- 上拉加载 -->
@@ -23,6 +23,7 @@
 				</template>
 			</block>
 		</view>
+		<user-space-popup :show="show" @hidePopup="toggleShow" @lahei="lahei"@beizhu="beizhu"></user-space-popup>
 	</view>
 </template>
 
@@ -33,6 +34,7 @@ import swiperHead from "../../components/index/swiper-head.vue"
 import userSpaceUserInfo from "../../components/user-space/user-space-userinfo.vue"
 import loadMore from "../../components/common/load-more.vue"
 import commonList from "../../components/common/common-list.vue"
+import userSpacePopup from "../../components/user-space/user-space-popup.vue"
 export default {
 	components: {
 		userSpaceHead,
@@ -40,7 +42,8 @@ export default {
 		swiperHead,
 		userSpaceUserInfo,
 		commonList,
-		loadMore
+		loadMore,
+		userSpacePopup
 	},
 	data() {
 		return {
@@ -184,10 +187,25 @@ export default {
 						}
 					]
 				}
-			]
-		};
+			],
+			show: false
+		}
 	},
 	methods: {
+		// 操作菜单显示隐藏
+		toggleShow() {
+			this.show = !this.show
+		},
+		// 拉黑
+		lahei() {
+			console.log("拉黑")
+			this.toggleShow()
+		},
+		// 备注
+		beizhu() {
+			console.log("备注")
+			this.toggleShow()
+		},
 		itemClick(index) {
 			this.tabIndex = index
 		},
@@ -223,6 +241,11 @@ export default {
 	onReachBottom() {
 		// 下拉加载更多
 		this.loadMore()
+	},
+	onNavigationBarButtonTap(e) {
+		if(e.index==0) {
+			this.toggleShow()
+		}
 	}
 };
 </script>
