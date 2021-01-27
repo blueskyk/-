@@ -24,6 +24,22 @@ export default {
 						});
 					}
 					break;
+					case 'clear':
+						uni.showModal({
+							title: '提示',
+							content: '是否要清除缓存?',
+							cancelText: '取消',
+							confirmText: '立刻清除',
+							success: res => {
+								if(res.confirm) {
+									uni.clearStorage()
+									uni.showToast({
+										title: '清除缓存成功'
+									});
+								}
+							}
+						});
+						break;
 			}
 		}
 	}

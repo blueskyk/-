@@ -22,7 +22,7 @@
 					{icon: "",name: "绑定邮箱",clicktype:"navigateTo",url: "../../pages/bind-email/bind-email"},
 					{icon: "",name: "资料编辑",clicktype:"navigateTo",url: "../../pages/change-userinfo/change-userinfo"},
 					{icon: "",name: "小纸条",clicktype:"",url: ""},
-					{icon: "",name: "清除缓存",clicktype:"",url: ""},
+					{icon: "",name: "清除缓存",clicktype:"clear",url: ""},
 					{icon: "",name: "意见反馈",clicktype:"navigateTo",url: "../../pages/user-help/user-help"},
 					{icon: "",name: "关于app",clicktype:"navigateTo",url: "../../pages/about/about"}
 				]
